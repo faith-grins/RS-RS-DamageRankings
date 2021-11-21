@@ -1,0 +1,10 @@
+Filename,Url
+ability.json,https://raw.githubusercontent.com/rbcaixeta/rsrsdata/main/ability.json
+character.json,https://raw.githubusercontent.com/rbcaixeta/rsrsdata/main/character.json
+expert_skill.json,https://raw.githubusercontent.com/rbcaixeta/rsrsdata/main/expertskill.json
+skill_power.json,https://raw.githubusercontent.com/rbcaixeta/rsrsdata/main/skillpower.json
+skills.json,https://raw.githubusercontent.com/rbcaixeta/rsrsdata/main/skill.json
+style.json,https://raw.githubusercontent.com/rbcaixeta/rsrsdata/main/style.json
+style_stat_cap.json,https://raw.githubusercontent.com/rbcaixeta/rsrsdata/main/style-stat-cap.json
+style_bonus.json,https://raw.githubusercontent.com/rbcaixeta/rsrsdata/main/stylebonus.json
+weapon.json,https://raw.githubusercontent.com/rbcaixeta/rsrsdata/main/weapon.json
