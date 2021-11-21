@@ -62,7 +62,6 @@ def build():
     return
 
 
-
 def dedupe_skills():
     skill_file_path = os.path.join(ingest_directory, 'skills.json')
     from json import load, dump
@@ -88,17 +87,25 @@ def dedupe_skills():
                 dupe_skills[s['name']] = [s]
             else:
                 dupe_skills[s['name']].append(s)
+    remove_list = []
     for skill_name in dupe_skills:
         '''
         the "good" one is the one with a nonzero bp cost.  if they all have 0 bp cost, then it's either a normal attack
         or it's not player usable, in which case take the first in the list arbitrarily
         '''
-        
+        good_skill = None
+        temp_remove = []
         for s in dupe_skills[skill_name]:
-            if
+            if s['consume_bp'] > 0:
+                good_skill = s
                 print(s)
-    for dupe in dupe_skills:
-        print(dupe)
+            else:
+                temp_remove.append(s)
+        if good_skill:
+            remove_list.extend(temp_remove)
+        else:
+            temp_remove.pop(0)
+            remove_list.extend(temp_remove)
     for skill_to_remove in remove_list:
         skill_data.remove(skill_to_remove)
     with open(skill_file_path, 'w') as skills_file:
