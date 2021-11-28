@@ -62,7 +62,7 @@ def build():
     return
 
 
-def dedupe_skills():
+def scrub_skills():
     skill_file_path = os.path.join(ingest_directory, 'skills.json')
     from json import load, dump
     from re import compile
@@ -112,9 +112,21 @@ def dedupe_skills():
         dump(skill_data, skills_file)
 
 
+def dedupe_styles():
+    return None
+
+
+def cleanup_abilities():
+    import operator
+    abilities = model.get_abilities(os.path.join(ingest_directory, 'ability.json'))
+    abilities.sort(key=operator.attrgetter('name'))
+    for a in abilities:
+        print('{0}: {1}'.format(a.name, a.boost))
+
+
 def cleanup():
     # fix known errors in the ingestion files
-    dedupe_skills()
+    cleanup_abilities()
 
 
 if __name__ == '__main__':
