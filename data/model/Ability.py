@@ -1,88 +1,97 @@
-from .Common import DamageType, WeaponType
+from .Common import DamageType
+from re import match
+
+
+_roman = {'Ⅳ': 4, 'Ⅰ': 1, 'Ⅱ': 2, 'Ⅲ': 3, 'Ⅴ': 5}
 
 
 class TypeBoost:
-    def __init__(self, value, weapon_type: WeaponType=None, damage_type: DamageType=None):
-        self.weapon_type = weapon_type
+    def __init__(self, value, damage_type=None):
         self.damage_type = damage_type
         self.full_hp = False
         self.weak_point = False
         self.number_of_turns = 0
         self.value = value
 
+    def match_inputs(self, damage_type: DamageType, full_hp: bool, weak_point: bool, turn_number: int):
+        return self.match_type(damage_type) and self.match_hp(full_hp) and self.match_weak(weak_point)\
+               and self.match_turn(turn_number)
+
+    def match_type(self, damage_type: DamageType):
+        return not self.damage_type or self.damage_type == damage_type
+
+    def match_hp(self, full_hp: bool):
+        return not self.full_hp or full_hp
+
+    def match_weak(self, weak_point: bool):
+        return not self.weak_point or weak_point
+
+    def match_turn(self, turn_number):
+        return not self.number_of_turns or turn_number <= self.number_of_turns
+
 
 class Ability:
-    _roman = {'Ⅳ': 4, 'Ⅰ': 1, 'Ⅱ': 2, 'Ⅲ': 3, 'Ⅴ': 5}
-    _hardy_names = ['Hardy Wallop', 'Robust Tension']
-    _weak_names = ['Weak Point Focus', 'Weak Tension']
-    _fired_names = {'Fired Up': -1, 'Weak Tension': 15, 'Robust Tension': 15, 'Battle Tension': 15, 'Over Tension': 15,
-                    'Strengthened Energy': 10, 'Prowess': 0, ' Amp ': 0}
-    _engage_names = {'Engage'}
-
     def __init__(self, json_object):
         self.name = json_object['name'].strip()
         self.id = json_object['id']
-        self.boost = self._fired_up()
-        self.hardy_boost = self._full_hp()
-        self.weak_boost = self._weak_point()
-        self.engage_boost = self._engage_damage()
+        self.boosts = []
+        self.bp_start = 0
+        self.bp_gain = 0
 
     def _match_name(self, ability_name):
         return any([name in self.name for name in ability_name])
 
-    def _rank(self):
-        digit = self.name[-1]
-        if digit in self._roman.keys():
-            return self._roman[digit]
-        else:
-            return 0
+    def damage_increase(self, damage_type: DamageType, turn_number: int, full_hp=False, weak_point=False):
+        value = 0
+        for boost in self.boosts:
+            if boost.match_inputs(damage_type, full_hp, weak_point, turn_number):
+                value += boost.value
+        return value
 
-    def _fired_up(self):
-        name_match = [name for name in self._fired_names if name in self.name]
-        if name_match:
-            rank = self._rank()
-            if rank:
-                name_match = name_match[0]
-                rank += self._fired_names[name_match]
-                return 2.5 if rank == 0 else 5 * rank
-            else:
-                return self._fired_names[self.name]
-        else:
-            return 0
+    def import_damage_boost(self, list_of_damage_dicts):
+        for damage in list_of_damage_dicts:
+            if match(damage['NamePattern'], self.name):
+                damage_value = int(damage['DamageValue'])
+                if damage_value < 5:
+                    rank = _roman[self.name[-1]] + damage_value
+                    if rank == 0:
+                        damage_value = 2.5
+                    else:
+                        damage_value = 5 * rank
+                boost = TypeBoost(damage_value)
+                boost.full_hp = damage['FullHp'] == 'True'
+                boost.weak_point = damage['WeakPoint'] == 'True'
+                boost.number_of_turns = int(damage['NumberOfTurns'])
+                boost.damage_type = DamageType(int(damage['DamageType'])) if damage['DamageType'] != '0' else None
+                self.boosts.append(boost)
 
-    def _weak_point(self):
-        rank = self._rank()
-        if rank:
-            return 5 * rank
-        else:
-            return 10
-
-    def _full_hp(self):
-        rank = self._rank()
-        if rank:
-            return 5 * rank
-        else:
-            return 10
-
-    def _engage_damage(self):
-        return 0
-
-    def damage_increase(self, full_hp=False, weak_point=False):
-        boost = 0
-        if self._match_name(self._fired_names):
-            boost += self._fired_up()
-        if full_hp and self._match_name(self._hardy_names):
-            boost += self._full_hp()
-        if weak_point and self._match_name(self._weak_names):
-            boost += self._weak_point()
-        return boost
+    def import_bp_boost(self, list_of_bp_boosts):
+        for bp in list_of_bp_boosts:
+            if match(bp['NamePattern'], self.name):
+                bp_value = int(bp['Bp'])
+                if bp_value == 0:
+                    bp_value = _roman[self.name[-1]]
+                if bp['StartOfBattle'] == 'True':
+                    self.bp_start += bp_value
+                if bp['EveryTurn'] == 'True':
+                    self.bp_gain += bp_value
 
 
-def get_abilities(filename):
+def get_abilities(ability_filename, damage_filename, bp_filename):
     from json import loads
-    with open(filename, 'r', encoding='utf8') as ability_file:
+    from csv import DictReader
+    with open(ability_filename, 'r', encoding='utf8') as ability_file:
         ability_list = loads(ability_file.read())
+    with open(damage_filename, 'r') as damage_file:
+        damage_dict = DictReader(damage_file)
+        damage_corrections = [line for line in damage_dict]
+    with open(bp_filename, 'r') as bp_file:
+        bp_dict = DictReader(bp_file)
+        bp_corrections = [line for line in bp_dict]
     abilities = []
     for ability in ability_list:
-        abilities.append(Ability(ability))
+        a = Ability(ability)
+        a.import_damage_boost(damage_corrections)
+        a.import_bp_boost(bp_corrections)
+        abilities.append(a)
     return abilities

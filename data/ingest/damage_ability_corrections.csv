@@ -1,0 +1,52 @@
+NamePattern,DamageType,NumberOfTurns,DamageValue,AllAllies,FullHp,WeakPoint
+Showtime,0,3,5,True,False,False
+Pierce Clash,3,3,10,True,False,False
+Lightning Blitz,6,3,10,True,False,False
+Piercing Blitz,3,3,10,True,False,False
+Blunt Blitz,2,3,10,True,False,False
+Blunt Clash,2,3,10,True,False,False
+Warcry (Blunt/Sun),2,0,5,True,False,False
+Warcry (Blunt/Sun),7,0,5,True,False,False
+Warcry (Slash/Blunt),1,0,5,True,False,False
+Warcry (Slash/Blunt),2,0,5,True,False,False
+Warcry (Slash/Sun),1,0,5,True,False,False
+Warcry (Slash/Sun),7,0,5,True,False,False
+Warcry (Slash/Lightning),1,0,5,True,False,False
+Warcry (Slash/Lightning),6,0,5,True,False,False
+Bond of Fire & Ice,4,0,5,True,False,False
+Bond of Fire & Ice,5,0,5,True,False,False
+Song of Hope,0,0,5,True,False,False
+Sensei's Power,0,0,10,False,False,False
+Unite,0,0,15,False,False,False
+Valiance,0,0,15,False,False,False
+Imperial Assault,0,1,10,True,False,False
+Fired Up,0,0,-1,False,False,False
+Hardy Wallop,0,0,0,False,True,False
+Weak Point Focus,0,0,0,False,False,True
+Battle Tension,0,0,15,False,False,False
+Over Tension,0,0,15,False,False,False
+Weak Tension,0,0,15,False,False,False
+Weak Tension,0,0,10,False,False,True
+Robust Tension,0,0,15,False,False,False
+Robust Tension,0,0,10,False,True,False
+Engage,0,0,1,False,False,False
+One Fell Swoop,0,3,20,False,False,False
+Strengthened Energy,0,0,10,False,False,False
+From Attack to Defense,0,0,20,False,True,False
+Midsummer Days,0,0,15,False,True,False
+Return from Death,8,0,10,False,False,False
+Slash Amp,1,0,0,False,False,False
+Flame Amp,4,0,0,False,False,False
+Frost Amp,5,0,0,False,False,False
+Lightning Amp,6,0,0,False,False,False
+Sun Amp,7,0,0,False,False,False
+Shade Amp,8,0,0,False,False,False
+Superior Zoning,0,0,15,False,False,False
+Won't Let Go,0,0,15,False,False,False
+Axe Prowess,0,0,0,False,False,False
+Bow Prowess,0,0,0,False,False,False
+G. Sword Prowess,0,0,0,False,False,False
+Gun Prowess,0,0,0,False,False,False
+M. Arts Prowess,0,0,0,False,False,False
+Spear Prowess,0,0,0,False,False,False
+Sword Prowess,0,0,0,False,False,False

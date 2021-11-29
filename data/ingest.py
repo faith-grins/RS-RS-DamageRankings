@@ -1,6 +1,7 @@
 import data.model as model
 import urllib.request
 import os.path
+import pickle
 
 
 ingest_directory = 'ingest'
@@ -118,10 +119,18 @@ def dedupe_styles():
 
 def cleanup_abilities():
     import operator
-    abilities = model.get_abilities(os.path.join(ingest_directory, 'ability.json'))
+    ability_ingest = os.path.join(ingest_directory, 'ability.json')
+    ability_damage = os.path.join(ingest_directory, 'damage_ability_corrections.csv')
+    ability_bp = os.path.join(ingest_directory, 'bp_ability_corrections.csv')
+    abilities = model.get_abilities(ability_ingest, ability_damage, ability_bp)
     abilities.sort(key=operator.attrgetter('name'))
     for a in abilities:
-        print('{0}: {1}'.format(a.name, a.boost))
+        if a.name == 'Bond of Fire & Ice':
+            d_type = model.Common.DamageType(4)
+            print('{0}: {1}'.format(a.name, a.damage_increase(d_type, 1)))
+    ability_file = os.path.join(ingest_directory, 'abilities.pkl')
+    with open(ability_file, 'wb') as a_pickle_file:
+        pickle.dump(abilities, a_pickle_file)
 
 
 def cleanup():
