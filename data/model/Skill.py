@@ -1,7 +1,7 @@
-from .Common import WeaponType
-from .Common import MagicType
-from .Common import DamageType
-from .Common import SkillRange
+from .Common import WeaponType, MagicType, DamageType, SkillRange
+
+
+_int_fist_indicator_text = '*M. Arts Special Skill (INT)'
 
 
 class Skill:
@@ -30,6 +30,8 @@ class Skill:
             self.magic_type = MagicType(json_object['battle_type'])
         else:
             self.weapon_type = WeaponType(json_object['battle_type'])
+        if _int_fist_indicator_text in json_object['flavor_text']:
+            self.weapon_type = WeaponType.IntFist
         self.bp_cost = json_object['consume_bp']
         self.lp_cost = json_object['consume_lp']
         self.awakens = json_object['max_awakening_count']

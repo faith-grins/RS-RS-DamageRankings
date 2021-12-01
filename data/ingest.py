@@ -36,21 +36,30 @@ def get_ingest_files(directory):
     return ingest_file_manifest
 
 
-def main_weapon():
-    weapon_data = model.get_weapons('ingest/weapon.json')
-    print(len(weapon_data))
-    for w in weapon_data:
-        print(weapon_data[w])
-        print('    Max WP: {0}'.format(weapon_data[w].max_wp))
-        print('    Max SP: {0}'.format(weapon_data[w].max_sp))
-        print('    Justsu Types: {0}'.format(weapon_data[w].magic_types))
+def load_weapons(debug=False):
+    weapon_filename = os.path.join(ingest_directory, 'weapon.json')
+    weapon_data = model.get_weapons(weapon_filename)
+    if debug:
+        print(len(weapon_data))
+        for w in weapon_data:
+            print(weapon_data[w])
+            print('    Max WP: {0}'.format(weapon_data[w].max_wp))
+            print('    Max SP: {0}'.format(weapon_data[w].max_sp))
+            print('    Justsu Types: {0}'.format(weapon_data[w].magic_types))
+    with open(os.path.join(ingest_directory, 'local', 'weapon.pkl'), 'wb') as weapon_file:
+        pickle.dump(weapon_data, weapon_file)
 
 
-def main_skills():
-    skill_data = model.get_skills('ingest/skills.json', 'ingest/skill_power.json')
-    print(len(skill_data))
-    for s in skill_data:
-        print(skill_data[s].name)
+def load_skills(debug=False):
+    skill_filename = os.path.join(ingest_directory, 'skills.json')
+    skill_power_filename = os.path.join(ingest_directory, 'skill_power.json')
+    skill_data = model.get_skills(skill_filename, skill_power_filename)
+    if debug:
+        print(len(skill_data))
+        for s in skill_data:
+            print(skill_data[s].name)
+    with open(os.path.join(ingest_directory, 'local', 'skills.pkl'), 'wb') as skills_file:
+        pickle.dump(skill_data, skills_file)
 
 
 def ingest():
@@ -63,7 +72,7 @@ def build():
     return
 
 
-def scrub_skills():
+def cleanup_skills(debug=False):
     skill_file_path = os.path.join(ingest_directory, 'skills.json')
     from json import load, dump
     from re import compile
@@ -80,7 +89,8 @@ def scrub_skills():
         else:
             dupe_names[s['name']] += 1
     dupe_names = {d: dupe_names[d] for d in dupe_names if dupe_names[d] > 1}
-    print(dupe_names)
+    if debug:
+        print(dupe_names)
     dupe_skills = {}
     for s in skill_data:
         if s['name'] in dupe_names:
@@ -99,7 +109,8 @@ def scrub_skills():
         for s in dupe_skills[skill_name]:
             if s['consume_bp'] > 0:
                 good_skill = s
-                print(s)
+                if debug:
+                    print(s)
             else:
                 temp_remove.append(s)
         if good_skill:
@@ -110,32 +121,36 @@ def scrub_skills():
     for skill_to_remove in remove_list:
         skill_data.remove(skill_to_remove)
     with open(skill_file_path, 'w') as skills_file:
-        dump(skill_data, skills_file)
+        dump(skill_data, skills_file, indent=2)
 
 
-def dedupe_styles():
+def cleanup_styles():
     return None
 
 
-def cleanup_abilities():
+def load_abilities(debug=False):
     import operator
     ability_ingest = os.path.join(ingest_directory, 'ability.json')
     ability_damage = os.path.join(ingest_directory, 'damage_ability_corrections.csv')
     ability_bp = os.path.join(ingest_directory, 'bp_ability_corrections.csv')
     abilities = model.get_abilities(ability_ingest, ability_damage, ability_bp)
     abilities.sort(key=operator.attrgetter('name'))
-    for a in abilities:
-        if a.name == 'Bond of Fire & Ice':
-            d_type = model.Common.DamageType(4)
-            print('{0}: {1}'.format(a.name, a.damage_increase(d_type, 1)))
-    ability_file = os.path.join(ingest_directory, 'abilities.pkl')
+    if debug:
+        for a in abilities:
+            if any([b for b in a.boosts]):
+                d_type = model.Common.DamageType(1)
+                print('{0}: {1}'.format(a.name, a.damage_increase(d_type, 1)))
+    ability_file = os.path.join(ingest_directory, 'local', 'abilities.pkl')
     with open(ability_file, 'wb') as a_pickle_file:
         pickle.dump(abilities, a_pickle_file)
 
 
 def cleanup():
     # fix known errors in the ingestion files
-    cleanup_abilities()
+    load_abilities()
+    cleanup_skills()
+    load_skills()
+    load_weapons()
 
 
 if __name__ == '__main__':
