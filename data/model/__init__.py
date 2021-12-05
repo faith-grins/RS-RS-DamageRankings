@@ -3,3 +3,4 @@ from .Weapon import get_weapons
 from .Skill import Skill
 from .Skill import get_skills
 from .Ability import get_abilities
+from .Style import get_styles

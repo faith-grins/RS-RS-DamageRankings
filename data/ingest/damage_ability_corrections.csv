@@ -29,8 +29,8 @@ Weak Tension,0,0,15,False,False,False
 Weak Tension,0,0,10,False,False,True
 Robust Tension,0,0,15,False,False,False
 Robust Tension,0,0,10,False,True,False
-Engage,0,0,1,False,False,False
-One Fell Swoop,0,3,20,False,False,False
+Engage,0,1,3,False,False,False
+One Fell Swoop,0,3,30,False,False,False
 Strengthened Energy,0,0,10,False,False,False
 From Attack to Defense,0,0,20,False,True,False
 Midsummer Days,0,0,15,False,True,False

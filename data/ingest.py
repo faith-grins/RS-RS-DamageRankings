@@ -145,12 +145,24 @@ def load_abilities(debug=False):
         pickle.dump(abilities, a_pickle_file)
 
 
+def load_styles(debug=False):
+    style_filename = os.path.join(ingest_directory, 'style.json')
+    styles = model.get_styles(style_filename)
+    if debug:
+        for style in styles:
+            print('{0} {1} - {2}'.format(style.rank, style.character_name, style.style_name))
+    style_file = os.path.join(ingest_directory, 'styles.pkl')
+    with open(style_file, 'wb') as s_pickle_file:
+        pickle.dump(styles, s_pickle_file)
+
+
 def cleanup():
     # fix known errors in the ingestion files
-    load_abilities()
-    cleanup_skills()
-    load_skills()
-    load_weapons()
+    # load_abilities()
+    # cleanup_skills()
+    # load_skills()
+    # load_weapons()
+    load_styles(True)
 
 
 if __name__ == '__main__':
