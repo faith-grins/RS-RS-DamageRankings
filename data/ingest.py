@@ -24,6 +24,22 @@ class IngestDataFile:
             output_file.write(self.data)
 
 
+def write_local_data_file(filename, dump_object):
+    output_directory = os.path.join(ingest_directory, 'local', filename)
+    with open(output_directory, 'wb') as file_out:
+        pickle.dump(dump_object, file_out)
+
+
+def load_data_file(filename):
+    local_path = os.path.join(ingest_directory, 'local', filename)
+    if os.path.exists(local_path):
+        with open(local_path, 'rb') as data_file:
+            data = pickle.load(data_file)
+        return data
+    else:
+        return None
+
+
 def get_ingest_files(directory):
     full_filename = os.path.join(directory, ingest_manifest)
     with open(full_filename, 'r') as ingest_file:
@@ -37,29 +53,38 @@ def get_ingest_files(directory):
 
 
 def load_weapons(debug=False):
-    weapon_filename = os.path.join(ingest_directory, 'weapon.json')
-    weapon_data = model.get_weapons(weapon_filename)
-    if debug:
-        print(len(weapon_data))
-        for w in weapon_data:
-            print(weapon_data[w])
-            print('    Max WP: {0}'.format(weapon_data[w].max_wp))
-            print('    Max SP: {0}'.format(weapon_data[w].max_sp))
-            print('    Justsu Types: {0}'.format(weapon_data[w].magic_types))
-    with open(os.path.join(ingest_directory, 'local', 'weapon.pkl'), 'wb') as weapon_file:
-        pickle.dump(weapon_data, weapon_file)
+    local_weapon_file = load_data_file('weapon.pkl')
+    if local_weapon_file:
+        return local_weapon_file
+    else:
+        weapon_filename = os.path.join(ingest_directory, 'weapon.json')
+        weapon_data = model.get_weapons(weapon_filename)
+        if debug:
+            print(len(weapon_data))
+            for w in weapon_data:
+                print(weapon_data[w])
+                print('    Max WP: {0}'.format(weapon_data[w].max_wp))
+                print('    Max SP: {0}'.format(weapon_data[w].max_sp))
+                print('    Justsu Types: {0}'.format(weapon_data[w].magic_types))
+        with open(os.path.join(ingest_directory, 'local', 'weapon.pkl'), 'wb') as weapon_file:
+            pickle.dump(weapon_data, weapon_file)
+        return weapon_data
 
 
 def load_skills(debug=False):
-    skill_filename = os.path.join(ingest_directory, 'skills.json')
-    skill_power_filename = os.path.join(ingest_directory, 'skill_power.json')
-    skill_data = model.get_skills(skill_filename, skill_power_filename)
-    if debug:
-        print(len(skill_data))
-        for s in skill_data:
-            print(skill_data[s].name)
-    with open(os.path.join(ingest_directory, 'local', 'skills.pkl'), 'wb') as skills_file:
-        pickle.dump(skill_data, skills_file)
+    local_skill_file = load_data_file('skills.pkl')
+    if local_skill_file:
+        return local_skill_file
+    else:
+        skill_filename = os.path.join(ingest_directory, 'skills.json')
+        skill_power_filename = os.path.join(ingest_directory, 'skill_power.json')
+        skill_data = model.get_skills(skill_filename, skill_power_filename)
+        if debug:
+            print(len(skill_data))
+            for s in skill_data:
+                print(skill_data[s].name)
+        write_local_data_file('skills.pkl', skill_data)
+        return skill_data
 
 
 def ingest():
@@ -78,7 +103,7 @@ def cleanup_skills(debug=False):
     from re import compile
     with open(skill_file_path, 'r', encoding='utf8') as skills_file:
         skill_data = load(skills_file)
-    english_regex = compile('[A-Za-z]')
+    english_regex = compile(r'[A-Za-z]')
     remove_list = []
     dupe_names = {}
     for s in skill_data:
@@ -129,31 +154,40 @@ def cleanup_styles():
 
 
 def load_abilities(debug=False):
-    import operator
-    ability_ingest = os.path.join(ingest_directory, 'ability.json')
-    ability_damage = os.path.join(ingest_directory, 'damage_ability_corrections.csv')
-    ability_bp = os.path.join(ingest_directory, 'bp_ability_corrections.csv')
-    abilities = model.get_abilities(ability_ingest, ability_damage, ability_bp)
-    abilities.sort(key=operator.attrgetter('name'))
-    if debug:
-        for a in abilities:
-            if any([b for b in a.boosts]):
-                d_type = model.Common.DamageType(1)
-                print('{0}: {1}'.format(a.name, a.damage_increase(d_type, 1)))
-    ability_file = os.path.join(ingest_directory, 'local', 'abilities.pkl')
-    with open(ability_file, 'wb') as a_pickle_file:
-        pickle.dump(abilities, a_pickle_file)
+    local_abilities = load_data_file('abilities.pkl')
+    if local_abilities:
+        return local_abilities
+    else:
+        import operator
+        ability_ingest = os.path.join(ingest_directory, 'ability.json')
+        ability_damage = os.path.join(ingest_directory, 'damage_ability_corrections.csv')
+        ability_bp = os.path.join(ingest_directory, 'bp_ability_corrections.csv')
+        abilities = model.get_abilities(ability_ingest, ability_damage, ability_bp)
+        abilities.sort(key=operator.attrgetter('name'))
+        if debug:
+            for a in abilities:
+                if any([b for b in a.boosts]):
+                    d_type = model.Common.DamageType(1)
+                    print('{0}: {1}'.format(a.name, a.damage_increase(d_type, 1)))
+        write_local_data_file('abilities.pkl', abilities)
+        return abilities
 
 
 def load_styles(debug=False):
-    style_filename = os.path.join(ingest_directory, 'style.json')
-    styles = model.get_styles(style_filename)
-    if debug:
-        for style in styles:
-            print('{0} {1} - {2}'.format(style.rank, style.character_name, style.style_name))
-    style_file = os.path.join(ingest_directory, 'local', 'styles.pkl')
-    with open(style_file, 'wb') as s_pickle_file:
-        pickle.dump(styles, s_pickle_file)
+    local_styles = load_data_file('styles.pkl')
+    if local_styles:
+        return local_styles
+    else:
+        style_filename = os.path.join(ingest_directory, 'style.json')
+        styles = model.get_styles(style_filename)
+        abilities = load_abilities(False)
+        level_up_file = os.path.join(ingest_directory, 'style_bonus.json')
+        model.merge_styles_with_level_up_data(styles, level_up_file, abilities)
+        if debug:
+            for style in styles:
+                print('{0} {1} - {2}'.format(style.rank, style.character_name, style.style_name))
+        write_local_data_file('styles.pkl', styles)
+        return styles
 
 
 def cleanup():
