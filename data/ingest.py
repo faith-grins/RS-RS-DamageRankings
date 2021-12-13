@@ -176,18 +176,26 @@ def load_abilities(debug=False):
 def load_styles(debug=False):
     local_styles = load_data_file('styles.pkl')
     if local_styles:
-        return local_styles
+        styles = local_styles
     else:
         style_filename = os.path.join(ingest_directory, 'style.json')
         styles = model.get_styles(style_filename)
         abilities = load_abilities(False)
         level_up_file = os.path.join(ingest_directory, 'style_bonus.json')
         model.merge_styles_with_level_up_data(styles, level_up_file, abilities)
-        if debug:
-            for style in styles:
-                print('{0} {1} - {2}'.format(style.rank, style.character_name, style.style_name))
         write_local_data_file('styles.pkl', styles)
-        return styles
+    if debug:
+        for style in styles:
+            print('{0} {1} - {2}'.format(style.rank, style.character_name, style.style_name))
+            print('  STR: {0}% +{1}'.format(style.level_50_str_mod, style.str_bonus))
+            print('  END: {0}% +{1}'.format(style.level_50_end_mod, style.end_bonus))
+            print('  DEX: {0}% +{1}'.format(style.level_50_dex_mod, style.dex_bonus))
+            print('  AGI: {0}% +{1}'.format(style.level_50_agi_mod, style.agi_bonus))
+            print('  INT: {0}% +{1}'.format(style.level_50_int_mod, style.int_bonus))
+            print('  WIL: {0}% +{1}'.format(style.level_50_wil_mod, style.wil_bonus))
+            print('  LOV: {0}% +{1}'.format(style.level_50_lov_mod, style.lov_bonus))
+            print('  CHA: {0}% +{1}'.format(style.level_50_cha_mod, style.cha_bonus))
+    return styles
 
 
 def cleanup():
