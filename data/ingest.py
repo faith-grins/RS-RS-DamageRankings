@@ -192,10 +192,8 @@ def load_styles(debug=False):
     return styles
 
 
-def dedupe_styles(debug=False):
+def dedupe_styles(styles, debug=False):
     import operator
-    styles = load_styles(False)
-    styles.sort(key=operator.attrgetter('style_name'))
     styles_by_name = {}
     for style in styles:
         if style.style_name not in styles_by_name:
@@ -221,14 +219,33 @@ def dedupe_styles(debug=False):
     write_local_data_file('styles.pkl', styles)
 
 
+def remove_dead_skills(skill_list, style_list, debug=False):
+    dead_skills = []
+    exception_names = ['Fang Breaker', 'Cyclone Kick', 'Unsheathe', 'Jolt Counter', 'Whirlpool']
+    for skill in skill_list:
+        found = False
+        for style in style_list:
+            if skill in style.skills:
+                found = True
+                break
+        if not found and skill.name[-1] != '+' and skill.name not in exception_names and 'Normal Attack' not in skill.name:
+            dead_skills.append(skill)
+    for skill in dead_skills:
+        if debug:
+            print(skill)
+        skill_list.remove(skill)
+    write_local_data_file('skills.pkl', skill_list)
+
+
 def cleanup():
     # fix known errors in the ingestion files
-    load_abilities()
+    abilities = load_abilities()
     cleanup_skills()
-    load_skills()
-    load_weapons()
-    load_styles()
-    dedupe_styles()
+    skills = load_skills()
+    weapons = load_weapons()
+    styles = load_styles()
+    dedupe_styles(styles)
+    remove_dead_skills(skills, styles, True)
 
 
 if __name__ == '__main__':

@@ -40,7 +40,18 @@ class Skill:
         self.is_spell = json_object['skill_type'] == 2
 
     def __str__(self):
-        return '{0}:"{1}"'.format(self.name, self.power_rank)
+        return '{0}: {1} (Id={2})'.format(self.name, self.power_rank, self.id)
+
+    def __eq__(self, other):
+        if not isinstance(other, self.__class__):
+            return False
+        else:
+            return self.name == other.name and self.power_rank == other.power_rank \
+                   and self.power_number == other.power_number and  self.weapon_type == other.weapon_type \
+                   and self.magic_type == other.magic_type and self.range == other.range \
+                   and self.is_spell == other.is_spell and self.bp_cost == other.bp_cost \
+                   and self.lp_cost == other.lp_cost and self.awakens == other.awakens \
+                   and self.min_hits == other.min_hits and self.max_hits == other.max_hits
 
 
 def get_skills(skill_filename, skill_power_filename):
