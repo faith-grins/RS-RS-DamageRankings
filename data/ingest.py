@@ -237,6 +237,23 @@ def remove_dead_skills(skill_list, style_list, debug=False):
     write_local_data_file('skills.pkl', skill_list)
 
 
+def remove_dead_abilities(ability_list, style_list, debug=False):
+    dead_abilities = []
+    for ability in ability_list:
+        found = False
+        for style in style_list:
+            if ability in style.abilities:
+                found = True
+                break
+        if not found:
+            dead_abilities.append(ability)
+    for ability in dead_abilities:
+        if debug:
+            print(ability)
+        ability_list.remove(ability)
+    write_local_data_file('abilities.pkl', ability_list)
+
+
 def cleanup():
     # fix known errors in the ingestion files
     abilities = load_abilities()
@@ -245,7 +262,8 @@ def cleanup():
     weapons = load_weapons()
     styles = load_styles()
     dedupe_styles(styles)
-    remove_dead_skills(skills, styles, True)
+    remove_dead_skills(skills, styles)
+    remove_dead_abilities(abilities, styles, True)
 
 
 if __name__ == '__main__':

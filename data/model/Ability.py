@@ -79,6 +79,12 @@ class Ability:
     def __str__(self):
         return self.name
 
+    def __eq__(self, other):
+        if not isinstance(other, self.__class__):
+            return False
+        else:
+            return self.name == other.name and self.id == other.id
+
 
 def get_abilities(ability_filename, damage_filename, bp_filename):
     from json import loads
