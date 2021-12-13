@@ -151,17 +151,17 @@ def load_styles(debug=False):
     if debug:
         for style in styles:
             print('{0} {1} - {2}'.format(style.rank, style.character_name, style.style_name))
-    style_file = os.path.join(ingest_directory, 'styles.pkl')
+    style_file = os.path.join(ingest_directory, 'local', 'styles.pkl')
     with open(style_file, 'wb') as s_pickle_file:
         pickle.dump(styles, s_pickle_file)
 
 
 def cleanup():
     # fix known errors in the ingestion files
-    # load_abilities()
-    # cleanup_skills()
-    # load_skills()
-    # load_weapons()
+    load_abilities()
+    cleanup_skills()
+    load_skills()
+    load_weapons()
     load_styles(True)
 
 
