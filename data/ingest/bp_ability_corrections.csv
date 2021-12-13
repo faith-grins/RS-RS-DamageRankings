@@ -1,0 +1,7 @@
+NamePattern,Bp,StartOfBattle,EveryTurn
+Power Charge,0,True,False
+Strengthened Energy,0,True,False
+Battle Tension,1,True,False
+Midsummer Days,2,True,False
+Kingship,1,False,True
+Leader's Mission,1,False,True

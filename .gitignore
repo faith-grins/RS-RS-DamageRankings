@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Project-specific ignores
+.secrets/
+data/ingest/*.json
+.idea/
+data/ingest/local/
