@@ -76,6 +76,9 @@ class Ability:
                 if bp['EveryTurn'] == 'True':
                     self.bp_gain += bp_value
 
+    def __str__(self):
+        return self.name
+
 
 def get_abilities(ability_filename, damage_filename, bp_filename):
     from json import loads

@@ -74,17 +74,17 @@ def load_weapons(debug=False):
 def load_skills(debug=False):
     local_skill_file = load_data_file('skills.pkl')
     if local_skill_file:
-        return local_skill_file
+        skill_data = local_skill_file
     else:
         skill_filename = os.path.join(ingest_directory, 'skills.json')
         skill_power_filename = os.path.join(ingest_directory, 'skill_power.json')
-        skill_data = model.get_skills(skill_filename, skill_power_filename)
-        if debug:
-            print(len(skill_data))
-            for s in skill_data:
-                print(skill_data[s].name)
+        skill_data = [s for s in model.get_skills(skill_filename, skill_power_filename).values()]
         write_local_data_file('skills.pkl', skill_data)
-        return skill_data
+    if debug:
+        print(len(skill_data))
+        for s in skill_data:
+            print(s.name)
+    return skill_data
 
 
 def ingest():
@@ -183,19 +183,42 @@ def load_styles(debug=False):
         abilities = load_abilities(False)
         level_up_file = os.path.join(ingest_directory, 'style_bonus.json')
         model.merge_styles_with_level_up_data(styles, level_up_file, abilities)
+        skills = load_skills(False)
+        model.merge_styles_with_skill_data(styles, skills)
         write_local_data_file('styles.pkl', styles)
     if debug:
         for style in styles:
-            print('{0} {1} - {2}'.format(style.rank, style.character_name, style.style_name))
-            print('  STR: {0}% +{1}'.format(style.level_50_str_mod, style.str_bonus))
-            print('  END: {0}% +{1}'.format(style.level_50_end_mod, style.end_bonus))
-            print('  DEX: {0}% +{1}'.format(style.level_50_dex_mod, style.dex_bonus))
-            print('  AGI: {0}% +{1}'.format(style.level_50_agi_mod, style.agi_bonus))
-            print('  INT: {0}% +{1}'.format(style.level_50_int_mod, style.int_bonus))
-            print('  WIL: {0}% +{1}'.format(style.level_50_wil_mod, style.wil_bonus))
-            print('  LOV: {0}% +{1}'.format(style.level_50_lov_mod, style.lov_bonus))
-            print('  CHA: {0}% +{1}'.format(style.level_50_cha_mod, style.cha_bonus))
+            style.pretty_print()
     return styles
+
+
+def dedupe_styles(debug=False):
+    import operator
+    styles = load_styles(False)
+    styles.sort(key=operator.attrgetter('style_name'))
+    styles_by_name = {}
+    for style in styles:
+        if style.style_name not in styles_by_name:
+            styles_by_name[style.style_name] = [style]
+        else:
+            styles_by_name[style.style_name].append(style)
+    for name in styles_by_name:
+        if len(styles_by_name[name]) > 1:
+            dupes = []
+            for s in styles_by_name[name]:
+                if debug:
+                    s.pretty_print()
+                if any([sty for sty in styles_by_name[name] if sty == s and sty is not s]):
+                    dupes.append(s)
+            if len(dupes) == len(styles_by_name[name]):
+                for i, dupe in enumerate(dupes):
+                    if i == 0:
+                        continue
+                    styles.remove(dupe)
+            else:
+                for dupe in dupes:
+                    styles.remove(dupe)
+    write_local_data_file('styles.pkl', styles)
 
 
 def cleanup():
@@ -204,7 +227,8 @@ def cleanup():
     cleanup_skills()
     load_skills()
     load_weapons()
-    load_styles(True)
+    load_styles()
+    dedupe_styles()
 
 
 if __name__ == '__main__':

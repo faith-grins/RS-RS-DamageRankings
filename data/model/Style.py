@@ -87,6 +87,50 @@ class Style:
                     if ability.id == bonus_value:
                         self.abilities.append(ability)
 
+    def pretty_print(self):
+        print('{0} {1} - {2}'.format(self.rank, self.character_name, self.style_name))
+        print('  STR: {0}% +{1}'.format(self.level_50_str_mod, self.str_bonus))
+        print('  END: {0}% +{1}'.format(self.level_50_end_mod, self.end_bonus))
+        print('  DEX: {0}% +{1}'.format(self.level_50_dex_mod, self.dex_bonus))
+        print('  AGI: {0}% +{1}'.format(self.level_50_agi_mod, self.agi_bonus))
+        print('  INT: {0}% +{1}'.format(self.level_50_int_mod, self.int_bonus))
+        print('  WIL: {0}% +{1}'.format(self.level_50_wil_mod, self.wil_bonus))
+        print('  LOV: {0}% +{1}'.format(self.level_50_lov_mod, self.lov_bonus))
+        print('  CHA: {0}% +{1}'.format(self.level_50_cha_mod, self.cha_bonus))
+        print('  Skill1: {0}'.format(self.skills[0]))
+        print('  Skill2: {0}'.format(self.skills[1]))
+        print('  Skill3: {0}'.format(self.skills[2]))
+        print('  Ability1: {0}'.format(self.abilities[0]))
+        print('  Ability2: {0}'.format(self.abilities[1]))
+        print('  Ability3: {0}'.format(self.abilities[2]))
+
+    def __str__(self):
+        return self.style_name
+
+    def __eq__(self, other):
+        if not isinstance(other, self.__class__):
+            return False
+        else:
+            skills_match = all([s in other.skills for s in self.skills])
+            abilities_match = all([a in other.abilities for a in self.abilities])
+            are_equal = self.style_name == other.style_name and self.rank == other.rank \
+                        and self.character_name == other.character_name and self.weapon_type == other.weapon_type \
+                        and self.str_bonus == other.str_bonus and self.end_bonus == other.end_bonus \
+                        and self.dex_bonus == other.dex_bonus and self.agi_bonus == other.agi_bonus \
+                        and self.int_bonus == other.int_bonus and self.wil_bonus == other.wil_bonus \
+                        and self.lov_bonus == other.lov_bonus and self.cha_bonus == other.cha_bonus \
+                        and self.level_50_str_mod == other.level_50_str_mod \
+                        and self.level_50_end_mod == other.level_50_end_mod \
+                        and self.level_50_dex_mod == other.level_50_dex_mod \
+                        and self.level_50_agi_mod == other.level_50_agi_mod \
+                        and self.level_50_int_mod == other.level_50_int_mod \
+                        and self.level_50_wil_mod == other.level_50_wil_mod \
+                        and self.level_50_lov_mod == other.level_50_lov_mod \
+                        and self.level_50_cha_mod == other.level_50_cha_mod \
+                        and skills_match \
+                        and abilities_match
+            return are_equal
+
 
 def get_styles(style_filename):
     from json import load
@@ -99,9 +143,24 @@ def get_styles(style_filename):
     return style_list
 
 
+def merge_styles_with_skill_data(styles_list, skills_list):
+    dud_styles = []
+    for style in styles_list:
+        style.update_skills(skills_list)
+        if len(style.skills) != 3:
+            dud_styles.append(style)
+    for dud_style in dud_styles:
+        styles_list.remove(dud_style)
+
+
 def merge_styles_with_level_up_data(styles_list, level_up_file, abilities_list):
     from json import load
     with open(level_up_file, 'r') as level_up:
         level_up_data = load(level_up)
+    dud_styles = []
     for style in styles_list:
         style.handle_level_ups(level_up_data, abilities_list)
+        if len(style.abilities) != 3:
+            dud_styles.append(style)
+    for dud_style in dud_styles:
+        styles_list.remove(dud_style)
