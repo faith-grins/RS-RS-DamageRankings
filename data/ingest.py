@@ -4,7 +4,7 @@ import os.path
 import pickle
 
 
-ingest_directory = 'ingest'
+ingest_directory = os.path.join(os.path.dirname(__file__), 'ingest')
 ingest_manifest = 'ingest_urls.csv'
 
 
