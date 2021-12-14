@@ -35,9 +35,45 @@ class Character:
             if style.cha_bonus > self.max_base_cha_value:
                 self.max_base_cha_value = style.cha_bonus
 
-    def attack(self, style, skill, weapon, formation_boost, equipment_mods, enemy_defense, enemy_resist):
+    def attack(self, style, skill, weapon, formation_boost, equipment_mods, mastery_level,
+               enemy_end, enemy_wil, enemy_resist, turn_number, full_hp):
         rank = 99
         skill_power = skill.power_number
         rank_modifier = (skill_power - 5) * ((100 + rank) / 100)
+        final_str = int((self.base_stat_cap + self.max_base_str_value) * style.level_50_str_mod *
+                        (100 + formation_boost) / 100 + style.str_bonus + equipment_mods.str)
+        final_agi = int((self.base_stat_cap + self.max_base_agi_value) * style.level_50_agi_mod *
+                        (100 + formation_boost) / 100 + style.agi_bonus + equipment_mods.agi)
+        final_dex = int((self.base_stat_cap + self.max_base_dex_value) * style.level_50_dex_mod *
+                        (100 + formation_boost) / 100 + style.dex_bonus + equipment_mods.dex)
+        final_int = int((self.base_stat_cap + self.max_base_int_value) * style.level_50_int_mod *
+                        (100 + formation_boost) / 100 + style.int_bonus + equipment_mods.int)
         if weapon.type == WeaponType.Fist:
-            stat_factor = 1 +
+            stat_factor = 1 + 2 * final_str + 2.5 * final_agi - 1.2 * enemy_end
+            weapon_factor = weapon.max_wp
+        elif weapon.type == WeaponType.Gun:
+            stat_factor = 1 + 3.6 * final_dex - 1.25 * enemy_end
+            weapon_factor = 1.9 * weapon.max_wp
+        else:
+            weapon_factor = 1.5 * weapon.max_wp
+            if weapon.type == WeaponType.Spell:
+                stat_factor = 1 + 1.4 * final_int - 1.5 * enemy_wil
+            elif weapon.type == WeaponType.IntFist:
+                stat_factor = 1 + 1.4 * final_int - 1.5 * enemy_end
+            elif weapon.type in (WeaponType.Bow, WeaponType.Epee):
+                stat_factor = 1 + 1.4 * final_dex - 1.5 * enemy_end
+            else:
+                stat_factor = 1 + 1.4 * final_str - 1.5 * enemy_end
+        resist_factor = 1 / (1 + 0.008 * enemy_resist)
+        weak_point = enemy_resist <= -35
+        ability_factor = sum([a.damage_increase(skill.damage_types, turn_number, full_hp, weak_point)
+                              for a in style.abilities]) / 100
+        mastery_factor = round(mastery_level / 2) * 0.5
+        random_factors = range(1, 7)
+        damage_values = []
+        for r in random_factors:
+            random_factor = ability_factor + mastery_factor + (r - 6) / 100
+            damage = (weapon_factor + skill_power * rank_modifier) * stat_factor * resist_factor * random_factor
+            damage_values.append(int(damage))
+        return int(sum(damage_values) / len (damage_values))
+

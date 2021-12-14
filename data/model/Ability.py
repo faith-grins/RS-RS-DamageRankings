@@ -41,11 +41,12 @@ class Ability:
     def _match_name(self, ability_name):
         return any([name in self.name for name in ability_name])
 
-    def damage_increase(self, damage_type: DamageType, turn_number: int, full_hp=False, weak_point=False):
+    def damage_increase(self, damage_types, turn_number: int, full_hp=False, weak_point=False):
         value = 0
         for boost in self.boosts:
-            if boost.match_inputs(damage_type, full_hp, weak_point, turn_number):
-                value += boost.value
+            for damage_type in damage_types:
+                if boost.match_inputs(damage_type, full_hp, weak_point, turn_number):
+                    value += boost.value
         return value
 
     def import_damage_boost(self, list_of_damage_dicts):
