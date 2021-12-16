@@ -64,13 +64,16 @@ def test_luna_fulgur():
 
 
 def test_doll_dance():
-    json_character = {'name': 'Madeleine', 'id': '00001'}
+    json_character = {'name': 'Coppelia', 'id': '00001'}
     coppy = Character.Character(json_character)
     styles = load_styles()
     coppy.add_styles(styles)
     coppy.update_base_stats(123)
+    # currently undercapped on STR and overcapped on AGI
+    coppy.max_base_str_value -= 1
+    coppy.max_base_agi_value += 1
     selected_style = [style for style in coppy.styles if style.style_name == '[Careful Preparations]'][0]
-    selected_skill = [skill for skill in selected_style.skills if skill.name == 'Destruction Doll Dance'][0]
+    selected_skill = [skill for style in coppy.styles for skill in style.skills if skill.name == 'Destruction Doll Dance'][0]
     equips = Equipment.EquipmentBonus()
     equips.str = 11
     equips.agi = 21
@@ -81,7 +84,7 @@ def test_doll_dance():
     formation.agi = 50
     for end_value in range(100, 400):
         damage_values = coppy.attack(selected_style, selected_skill, 99, weapon, formation, equips, 41, end_value, 81, 0, 1, True, 15)
-        if all([v in damage_values for v in (25147, 25702, 26256, 26072, 26626, 25575)]):
+        if all([v in damage_values for v in {35294, 35523, 35752}]):
             print(damage_values)
     # print(damage_values)
     # print(damage_values == [53705, 54079, 54453, 54828, 55202, 55576, 55950, 56325, 56699, 57073])
@@ -90,4 +93,5 @@ def test_doll_dance():
 if __name__ == '__main__':
     # test_vortex_breaker()
     # test_fire_feather()
-    test_luna_fulgur()
+    # test_luna_fulgur()
+    test_doll_dance()
