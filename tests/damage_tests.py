@@ -35,9 +35,10 @@ def test_vortex_breaker():
     weapon.type = Common.WeaponType.Fist
     damage_values = valdor.attack(selected_style, selected_skill, weapon, 0, equips, 35, 85, 81, -35, 1, True)
     print(damage_values)
+    print(damage_values == [57282, 57681, 58080, 58479, 58878, 59277, 59677, 60076, 60475, 60874])
 
 
 if __name__ == '__main__':
     test_vortex_breaker()
-    # test_fire_feather()
+    test_fire_feather()
 
