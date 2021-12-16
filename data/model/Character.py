@@ -54,27 +54,27 @@ class Character:
                         formation_boost) / 100 + style.dex_bonus + equipment_mods.dex)
         final_int = int((self.base_stat_cap + self.max_base_int_value) * (100 + style.level_50_int_mod +
                         formation_boost) / 100 + style.int_bonus + equipment_mods.int)
-        if weapon.type == WeaponType.Fist:
+        if skill.weapon_type == WeaponType.Fist:
             stat_factor = 1 + 2 * final_str + 2.5 * final_agi - 1.2 * enemy_end
             weapon_factor = weapon.max_wp
-        elif weapon.type == WeaponType.Gun:
+        elif skill.weapon_type == WeaponType.Gun:
             stat_factor = 1 + 3.6 * final_dex - 1.25 * enemy_end
             weapon_factor = 1.9 * weapon.max_wp
         else:
             weapon_factor = 1.5 * weapon.max_wp
-            if weapon.type == WeaponType.Spell:
-                stat_factor = 1 + 1.4 * final_int - 1.5 * enemy_wil
-            elif weapon.type == WeaponType.IntFist:
-                stat_factor = 1 + 1.4 * final_int - 1.5 * enemy_end
-            elif weapon.type in (WeaponType.Bow, WeaponType.Epee):
-                stat_factor = 1 + 1.4 * final_dex - 1.5 * enemy_end
+            if skill.weapon_type == WeaponType.Spell:
+                stat_factor = 1 + 4 * final_int - 1.5 * enemy_wil
+            elif skill.weapon_type == WeaponType.IntFist:
+                stat_factor = 1 + 4 * final_int - 1.5 * enemy_end
+            elif skill.weapon_type in (WeaponType.Bow, WeaponType.Epee):
+                stat_factor = 1 + 4 * final_dex - 1.5 * enemy_end
             else:
-                stat_factor = 1 + 1.4 * final_str - 1.5 * enemy_end
+                stat_factor = 1 + 4 * final_str - 1.5 * enemy_end
         resist_factor = 1 / (1 + 0.008 * enemy_resist)
         weak_point = enemy_resist <= -35
         ability_factor = sum([a.damage_increase(skill.damage_types, turn_number, full_hp, weak_point)
                               for a in style.abilities])
-        mastery_factor = round(mastery_level / 2) * 0.5 - 0.5
+        mastery_factor = round((mastery_level - 1) / 2) * 0.5
         random_factors = range(1, 11)
         damage_values = []
         for r in random_factors:
