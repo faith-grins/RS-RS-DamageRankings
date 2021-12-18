@@ -54,35 +54,33 @@ def test_luna_fulgur():
     selected_style = [style for style in maddie.styles if style.style_name == '[Two Khamsins]'][0]
     # not at level 50, yet
     selected_style.str_bonus = 8
-    selected_style.level_50_str_mod = 94.72 + 20
-    # set cap manually
-    maddie.max_base_str_value = 10
-    selected_skill = [skill for skill in selected_style.skills if skill.name == 'Luna Fulgur'][0]
-    equips = Equipment.EquipmentBonus()
-    equips.str = 18
-    weapon = Equipment.Weapon("Khamsin")
-    weapon.max_wp = 41
-    weapon.type = Common.WeaponType.Sword
-    formation = Common.FormationBonus()
-    formation.str = 50
-    skill_rank = 62
-    enemy_end = 213
-    enemy_will = 213
-    mastery_rank = 41
-    enemy_resist = 0
-    turn_number = 1
-    full_hp = turn_number == 1
-    weapon_stone = 15
     test_pass = False
-    for skill_power in range(35, 45):
-        selected_skill.power_number = skill_power
-        damage_values = maddie.attack(selected_style, selected_skill, skill_rank, weapon, formation, equips,
-                                      mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
-                                      weapon_stone)
-        if all([v in damage_values for v in {25147, 25702, 26256, 26072, 26626, 25575}]):
-            print('  Exact match:  SkillPower={0}'.format(skill_power))
-            print('  {0}'.format(damage_values))
-            test_pass = True
+    for str_mod in [x / 100 for x in range(9472, 13000)]:
+        selected_style.level_50_str_mod = str_mod
+        # set cap manually
+        maddie.max_base_str_value = 10
+        selected_skill = [skill for skill in selected_style.skills if skill.name == 'Luna Fulgur'][0]
+        equips = Equipment.EquipmentBonus()
+        weapon = Equipment.Weapon("Khamsin")
+        weapon.type = Common.WeaponType.Sword
+        formation = Common.FormationBonus()
+        skill_rank = 96
+        enemy_end = 85
+        enemy_will = 81
+        mastery_rank = 41
+        enemy_resist = 0
+        turn_number = 1
+        full_hp = turn_number == 1
+        weapon_stone = 0
+        for skill_power in range(35, 45):
+            selected_skill.power_number = skill_power
+            damage_values = maddie.attack(selected_style, selected_skill, skill_rank, weapon, formation, equips,
+                                          mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                          weapon_stone)
+            if all([v in damage_values for v in {13895, 14464, 14123}]):
+                print('  Exact match:  SkillPower={0}, StrMod={1}'.format(skill_power, str_mod))
+                print('  {0}'.format(damage_values))
+                test_pass = True
     print('PASS' if test_pass else 'FAIL')
 
 
@@ -181,7 +179,7 @@ def find_skill_power(character_name, style_name, skill_name, skill_rank, mastery
 
 
 if __name__ == '__main__':
-    test_fire_feather()
-    test_vortex_breaker()
+    # test_fire_feather()
+    # test_vortex_breaker()
     test_luna_fulgur()
-    test_doll_dance()
+    # test_doll_dance()
