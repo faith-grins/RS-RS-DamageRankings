@@ -75,12 +75,11 @@ class Character:
         weak_point = enemy_resist <= -35
         ability_factor = sum([a.damage_increase(skill.damage_types, turn_number, full_hp, weak_point)
                               for a in style.abilities])
-        ability_factor += weapon_stone
         mastery_factor = round((mastery_level - 1) / 2) * 0.5
         random_factors = range(1, 11)
         damage_values = []
         for r in random_factors:
-            random_factor = 1 + (ability_factor + mastery_factor + r - 6) / 100
+            random_factor = 1 + (ability_factor + mastery_factor + weapon_stone + r - 6) / 100
             technique_factor = weapon_factor + skill_power + rank_modifier
             damage = technique_factor * stat_factor * resist_factor * random_factor / 10
             damage_values.append(int(damage))
