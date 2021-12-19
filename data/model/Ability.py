@@ -1,11 +1,25 @@
 from .Common import DamageType
+from sqlalchemy import Table, Column, Integer, String, Boolean
+from sqlalchemy.orm import declarative_base, relationship
 from re import match
 
 
 _roman = {'Ⅳ': 4, 'Ⅰ': 1, 'Ⅱ': 2, 'Ⅲ': 3, 'Ⅴ': 5}
+ORM_Base = declarative_base()
 
 
-class TypeBoost:
+class DamageBoost(ORM_Base):
+    __tablename__ = 'DamageBoosts'
+
+    id = Column(Integer, primary_key=True)
+    damage_type = Column(Integer)
+    full_hp = Column(Boolean)
+    weak_point = Column(Boolean)
+    number_of_turns = Column(Integer)
+    damage_value = Column(Integer)
+
+    ability = relationship("Ability", back_populates='boosts')
+
     def __init__(self, value, damage_type=None):
         self.damage_type = damage_type
         self.full_hp = False
@@ -30,7 +44,16 @@ class TypeBoost:
         return not self.number_of_turns or turn_number <= self.number_of_turns
 
 
-class Ability:
+class Ability(ORM_Base):
+    __tablename__ = 'Ability'
+
+    name = Column(String)
+    id = Column(Integer, primary_key=True)
+    bp_start = Column(Integer)
+    bp_gain = Column(Integer)
+
+    boosts = relationship('boosts', back_populates='ability')
+
     def __init__(self, json_object):
         self.name = json_object['name'].strip()
         self.id = json_object['id']
@@ -58,7 +81,7 @@ class Ability:
                         damage_value = 2.5
                     else:
                         damage_value = 5 * rank
-                boost = TypeBoost(damage_value)
+                boost = DamageBoost(damage_value)
                 boost.full_hp = damage['FullHp'] == 'True'
                 boost.weak_point = damage['WeakPoint'] == 'True'
                 boost.number_of_turns = int(damage['NumberOfTurns'])
