@@ -2,6 +2,18 @@ from .Common import WeaponType
 from .Common import MagicType
 
 
+class EquipmentBonus:
+    def __init__(self):
+        self.str = 0
+        self.end = 0
+        self.dex = 0
+        self.agi = 0
+        self.int = 0
+        self.wil = 0
+        self.lov = 0
+        self.cha = 0
+
+
 class Weapon:
     def __init__(self, weapon_name):
         self.name = weapon_name

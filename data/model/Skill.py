@@ -38,6 +38,7 @@ class Skill:
         self.min_hits = json_object['min_action_time']
         self.max_hits = json_object['max_action_time']
         self.is_spell = json_object['skill_type'] == 2
+        self.damage_types = [DamageType(t) for t in json_object['attack_attributes']]
 
     def __str__(self):
         return '{0}: {1} (Id={2})'.format(self.name, self.power_rank, self.id)

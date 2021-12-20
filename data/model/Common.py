@@ -46,3 +46,15 @@ class SkillRange(Enum):
     Column = 7
     RandomEnemy = 9
     AiExclusive = 11
+
+
+class FormationBonus:
+    def __init__(self):
+        self.str = 0
+        self.end = 0
+        self.dex = 0
+        self.agi = 0
+        self.int = 0
+        self.wil = 0
+        self.lov = 0
+        self.cha = 0
