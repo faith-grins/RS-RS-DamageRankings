@@ -4,7 +4,7 @@ import os.path
 import pickle
 
 
-ingest_directory = 'ingest'
+ingest_directory = os.path.join(os.path.dirname(__file__), 'ingest')
 ingest_manifest = 'ingest_urls.csv'
 
 
@@ -71,11 +71,12 @@ def load_weapons(debug=False):
         return weapon_data
 
 
-def load_skills(debug=False):
-    local_skill_file = load_data_file('skills.pkl')
-    if local_skill_file:
-        skill_data = local_skill_file
-    else:
+def load_skills(debug=False, reload=False):
+    if not reload:
+        local_skill_file = load_data_file('skills.pkl')
+        if local_skill_file:
+            skill_data = local_skill_file
+    if reload or not skill_data:
         skill_filename = os.path.join(ingest_directory, 'skills.json')
         skill_power_filename = os.path.join(ingest_directory, 'skill_power.json')
         skill_data = [s for s in model.get_skills(skill_filename, skill_power_filename).values()]
@@ -153,38 +154,46 @@ def cleanup_styles():
     return None
 
 
-def load_abilities(debug=False):
-    local_abilities = load_data_file('abilities.pkl')
-    if local_abilities:
-        return local_abilities
-    else:
-        import operator
-        ability_ingest = os.path.join(ingest_directory, 'ability.json')
-        ability_damage = os.path.join(ingest_directory, 'damage_ability_corrections.csv')
-        ability_bp = os.path.join(ingest_directory, 'bp_ability_corrections.csv')
-        abilities = model.get_abilities(ability_ingest, ability_damage, ability_bp)
-        abilities.sort(key=operator.attrgetter('name'))
-        if debug:
-            for a in abilities:
-                if any([b for b in a.boosts]):
-                    d_type = model.Common.DamageType(1)
-                    print('{0}: {1}'.format(a.name, a.damage_increase(d_type, 1)))
-        write_local_data_file('abilities.pkl', abilities)
-        return abilities
+def load_abilities(debug=False, reload=False):
+    if not reload:
+        local_abilities = load_data_file('abilities.pkl')
+        if local_abilities:
+            return local_abilities
+    import operator
+    ability_ingest = os.path.join(ingest_directory, 'ability.json')
+    ability_damage = os.path.join(ingest_directory, 'damage_ability_corrections.csv')
+    ability_bp = os.path.join(ingest_directory, 'bp_ability_corrections.csv')
+    abilities = model.get_abilities(ability_ingest, ability_damage, ability_bp)
+    abilities.sort(key=operator.attrgetter('name'))
+    if debug:
+        for a in abilities:
+            if any([b for b in a.boosts]):
+                d_type = model.Common.DamageType(1)
+                print('{0}: {1}'.format(a.name, a.damage_increase(d_type, 1)))
+    write_local_data_file('abilities.pkl', abilities)
+    return abilities
 
 
-def load_styles(debug=False):
-    local_styles = load_data_file('styles.pkl')
-    if local_styles:
-        styles = local_styles
-    else:
+def load_styles(debug=False, reload=False):
+    if not reload:
+        local_styles = load_data_file('styles.pkl')
+        if local_styles:
+            styles = local_styles
+    if reload or not styles:
+        # initial load of styles
         style_filename = os.path.join(ingest_directory, 'style.json')
         styles = model.get_styles(style_filename)
+        # add abilities and static stat bonuses to styles
         abilities = load_abilities(False)
         level_up_file = os.path.join(ingest_directory, 'style_bonus.json')
         model.merge_styles_with_level_up_data(styles, level_up_file, abilities)
+        # add skills to styles
         skills = load_skills(False)
         model.merge_styles_with_skill_data(styles, skills)
+        # add base stat mods to styles
+        stat_cap_file = os.path.join(ingest_directory, 'style_stat_cap.json')
+        model.merge_styles_with_base_stat_mods(styles, stat_cap_file)
+        # serialize
         write_local_data_file('styles.pkl', styles)
     if debug:
         for style in styles:
@@ -258,9 +267,9 @@ def cleanup():
     # fix known errors in the ingestion files
     abilities = load_abilities()
     cleanup_skills()
-    skills = load_skills()
+    skills = load_skills(reload=True)
     weapons = load_weapons()
-    styles = load_styles()
+    styles = load_styles(reload=True)
     dedupe_styles(styles)
     remove_dead_skills(skills, styles)
     remove_dead_abilities(abilities, styles, True)

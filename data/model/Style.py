@@ -39,6 +39,14 @@ class Style:
         self.wil_bonus = 0
         self.lov_bonus = 0
         self.cha_bonus = 0
+        self.base_str_bonus = 0
+        self.base_end_bonus = 0
+        self.base_dex_bonus = 0
+        self.base_agi_bonus = 0
+        self.base_int_bonus = 0
+        self.base_wil_bonus = 0
+        self.base_lov_bonus = 0
+        self.base_cha_bonus = 0
         self.weapon_type = WeaponType(style_json_object['weapon_type'])
         rank = style_json_object['rarity']
         self.rank = 'A' if rank == 3 else 'S' if rank == 4 else 'SS'
@@ -86,6 +94,22 @@ class Style:
                 for ability in abilities_list:
                     if ability.id == bonus_value:
                         self.abilities.append(ability)
+
+    def get_base_stat_bonus(self, stat_caps_list):
+        stat_cap_object = [sc for sc in stat_caps_list if sc['styleId'] == self.id]
+        if stat_cap_object:
+            stat_cap_object = stat_cap_object[0]
+            if stat_cap_object['modifier_char_str'] is None or stat_cap_object['modifier_str'] is None:
+                print(self.style_name)
+            else:
+                self.base_str_bonus = stat_cap_object['modifier_char_str'] + stat_cap_object['modifier_str']
+                self.base_end_bonus = stat_cap_object['modifier_char_end'] + stat_cap_object['modifier_end']
+                self.base_dex_bonus = stat_cap_object['modifier_char_dex'] + stat_cap_object['modifier_dex']
+                self.base_agi_bonus = stat_cap_object['modifier_char_agi'] + stat_cap_object['modifier_agi']
+                self.base_int_bonus = stat_cap_object['modifier_char_int'] + stat_cap_object['modifier_int']
+                self.base_wil_bonus = stat_cap_object['modifier_char_wil'] + stat_cap_object['modifier_wil']
+                self.base_lov_bonus = stat_cap_object['modifier_char_lov'] + stat_cap_object['modifier_lov']
+                self.base_cha_bonus = stat_cap_object['modifier_char_cha'] + stat_cap_object['modifier_cha']
 
     def pretty_print(self):
         print('{0} {1} - {2}'.format(self.rank, self.character_name, self.style_name))
@@ -164,3 +188,11 @@ def merge_styles_with_level_up_data(styles_list, level_up_file, abilities_list):
             dud_styles.append(style)
     for dud_style in dud_styles:
         styles_list.remove(dud_style)
+
+
+def merge_styles_with_base_stat_mods(styles_list, stat_mod_filename):
+    from json import load
+    with open(stat_mod_filename, 'r') as stat_file:
+        stat_mod_data = load(stat_file)
+    for style in styles_list:
+        style.get_base_stat_bonus(stat_mod_data)
