@@ -1,5 +1,5 @@
 from .Common import DamageType
-from sqlalchemy import Table, Column, Integer, String, Boolean
+from sqlalchemy import Table, Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import declarative_base, relationship
 from re import match
 
@@ -17,6 +17,7 @@ class DamageBoost(ORM_Base):
     weak_point = Column(Boolean)
     number_of_turns = Column(Integer)
     damage_value = Column(Integer)
+    ability_id = Column(Integer, ForeignKey('Ability.id'))
 
     ability = relationship("Ability", back_populates='boosts')
 
