@@ -146,16 +146,26 @@ def find_skill_power(character_name, style_name, skill_name, skill_rank, mastery
     selected_style = [style for style in test_character.styles if style.style_name == style_name][0]
     selected_skill = [skill for skill in selected_style.skills if skill.name == skill_name][0]
     # set stats
-    test_character.update_base_stats(10)
+    test_character.update_base_stats(1)
     if selected_skill.weapon_type == Common.WeaponType.Fist:
-        test_character.max_base_agi_value = mainstat1 - 10
-        test_character.max_base_str_value = mainstat2 - 10
+        test_character.max_base_agi_value = mainstat1 - 9
+        test_character.max_base_str_value = mainstat2 - 9
+        selected_style.level_50_str_mod = 0
+        selected_style.level_50_agi_mod = 0
+        selected_style.str_bonus = 0
+        selected_style.agi_bonus = 0
     if selected_skill.weapon_type in (Common.WeaponType.IntFist, Common.WeaponType.Spell):
-        test_character.max_base_int_value = mainstat1 - 10
+        test_character.max_base_int_value = mainstat1 - 9
+        selected_style.level_50_int_mod = 0
+        selected_style.int_bonus = 0
     if selected_skill.weapon_type in (Common.WeaponType.Bow, Common.WeaponType.Epee, Common.WeaponType.Gun):
-        test_character.max_base_dex_value = mainstat1 - 10
+        test_character.max_base_dex_value = mainstat1 - 9
+        selected_style.level_50_dex_mod = 0
+        selected_style.dex_bonus = 0
     else:
-        test_character.max_base_str_value = mainstat1 - 10
+        test_character.max_base_str_value = mainstat1 - 9
+        selected_style.level_50_str_mod = 0
+        selected_style.str_bonus = 0
     equips = Equipment.EquipmentBonus()
     weapon = Equipment.Weapon("testWeapon")
     weapon.type = selected_skill.weapon_type
@@ -166,7 +176,7 @@ def find_skill_power(character_name, style_name, skill_name, skill_rank, mastery
     full_hp = turn_number == 1
     weapon_stone = 0
     test_pass = False
-    for skill_power in range(5, 99):
+    for skill_power in range(6, 99):
         selected_skill.power_number = skill_power
         damage_values = test_character.attack(selected_style, selected_skill, skill_rank, weapon, formation, equips,
                         mastery_level, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
@@ -178,8 +188,161 @@ def find_skill_power(character_name, style_name, skill_name, skill_rank, mastery
     print('PASS' if test_pass else 'FAIL')
 
 
+def luna_fulgur_v_cross_break():
+    json_character = {'name': 'Madeleine', 'id': '00001'}
+    maddie = Character.Character(json_character)
+    styles = load_styles()
+    maddie.add_styles(styles)
+    maddie.update_base_stats(124)
+    selected_style = [style for style in maddie.styles if style.style_name == '[Two Khamsins]'][0]
+    luna_fulgur = [skill for skill in selected_style.skills if skill.name == 'Luna Fulgur'][0]
+    demilune = [skill for style in maddie.styles for skill in style.skills if skill.name == 'Demilune Echo'][0]
+    equips = Equipment.EquipmentBonus()
+    equips.str = 18
+    weapon = Equipment.Weapon("Khamsin")
+    weapon.type = Common.WeaponType.Sword
+    weapon.max_wp = 41
+    formation = Common.FormationBonus()
+    formation.str = 50
+    skill_rank = 99
+    enemy_end = 213
+    enemy_will = 213
+    mastery_rank = 41
+    enemy_resist = 0
+    turn_number = 1
+    full_hp = turn_number == 1
+    weapon_stone = 15
+    luna_fulgur.power_number = 43
+    initial_str = selected_style.level_50_str_mod
+    maddie_attack1 = maddie.attack(selected_style, luna_fulgur, skill_rank, weapon, formation, equips,
+                                  mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                  weapon_stone)
+    str_buff = 15
+    selected_style.level_50_str_mod = initial_str + str_buff
+    maddie_attack2 = maddie.attack(selected_style, demilune, skill_rank, weapon, formation, equips,
+                                  mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                  weapon_stone)
+    str_buff += 15
+    str_buff *= 0.75
+    selected_style.level_50_str_mod = initial_str + str_buff
+    maddie_attack3 = maddie.attack(selected_style, luna_fulgur, skill_rank, weapon, formation, equips,
+                                  mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                  weapon_stone)
+    str_buff += 15
+    selected_style.level_50_str_mod = initial_str + str_buff
+    maddie_attack4 = maddie.attack(selected_style, demilune, skill_rank, weapon, formation, equips,
+                                  mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                  weapon_stone)
+    json_character = {'name': 'Urpina', 'id': '00002'}
+    urpina = Character.Character(json_character)
+    urpina.add_styles(styles)
+    urpina.update_base_stats(124)
+    selected_style = [style for style in urpina.styles if style.style_name == "[Now That's Dual Wielding!]"][0]
+    cross_break = [skill for skill in selected_style.skills if skill.name == 'Cross Break'][0]
+    cross_break.power_number = 50
+    sword_breath = [skill for skill in selected_style.skills if skill.name == 'Sword Breath'][0]
+    sword_breath.power_number = 10
+    selected_style.level_50_str_mod = 100
+    selected_style.str_bonus = 13
+    selected_style.abilities[0] = selected_style.abilities[2]
+    weapon_stone = 20
+    urpina_attack1 = urpina.attack(selected_style, cross_break, skill_rank, weapon, formation, equips,
+                                  mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                  weapon_stone)
+    urpina_attack2 = urpina.attack(selected_style, sword_breath, skill_rank, weapon, formation, equips,
+                                  mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                  weapon_stone)
+    urpina_attack3 = urpina.attack(selected_style, cross_break, skill_rank, weapon, formation, equips,
+                                  mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                  weapon_stone)
+    urpina_attack4 = urpina.attack(selected_style, sword_breath, skill_rank, weapon, formation, equips,
+                                   mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                   weapon_stone)
+    maddie_damage = (sum(maddie_attack1) + sum(maddie_attack2) + sum(maddie_attack3) + sum(maddie_attack4)) / 10
+    urpina_damage = (sum(urpina_attack1) + sum(urpina_attack2) + sum(urpina_attack3) + sum(urpina_attack4)) / 10
+    print(maddie_damage)
+    print(urpina_damage)
+
+
+def test_cross_break():
+    print('Cross Break test starting...')
+    cross_break = {17456, 16544, 16674, 16935, 17195, 17325, 17065, 16804, 16414, 16283}
+    sword_breath = {2346, 2365}
+    find_skill_power('Urpina', "[Now That's Dual Wielding!]", 'Cross Break', 99, 41, 265, 0, 0, cross_break)
+    # print('PASS' if test_pass else 'FAIL')
+
+
+def lunar_blade_vs_urps():
+    styles = load_styles()
+    # constants
+    equips = Equipment.EquipmentBonus()
+    equips.str = 18
+    weapon = Equipment.Weapon("Death Sword")
+    weapon.type = Common.WeaponType.Greatsword
+    weapon.max_wp = 45
+    formation = Common.FormationBonus()
+    formation.str = 50
+    skill_rank = 99
+    enemy_end = 213
+    enemy_will = 213
+    mastery_rank = 41
+    enemy_resist = -35
+    turn_number = 1
+    full_hp = turn_number == 1
+    weapon_stone = 20
+    # Silver
+    json_character = {'name': 'Silver', 'id': '00001'}
+    silver = Character.Character(json_character)
+    silver.add_styles(styles)
+    silver.update_base_stats(124)
+    selected_style = [style for style in silver.styles if style.style_name == '[Silver-Style Test of Guts]'][0]
+    storm_roar = [skill for skill in selected_style.skills if skill.name == 'Storm Roar'][0]
+    silver_attack = silver.attack(selected_style, storm_roar, skill_rank, weapon, formation, equips,
+                                   mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                   weapon_stone)
+    # Urps
+    json_character = {'name': 'Urpina', 'id': '00002'}
+    urpina = Character.Character(json_character)
+    urpina.add_styles(styles)
+    urpina.update_base_stats(124)
+    selected_style = [style for style in urpina.styles if style.style_name == "[Now That's Dual Wielding!]"][0]
+    cross_break = [skill for skill in selected_style.skills if skill.name == 'Cross Break'][0]
+    cross_break.power_number = 28
+    selected_style.level_50_str_mod = 100
+    selected_style.str_bonus = 13
+    selected_style.abilities[0] = selected_style.abilities[2]
+    urpina_attack = urpina.attack(selected_style, cross_break, skill_rank, weapon, formation, equips,
+                                   mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                   weapon_stone)
+    # Fancy Lass
+    json_character = {'name': 'Final Empress', 'id': '00003'}
+    fancy_lass = Character.Character(json_character)
+    fancy_lass.add_styles(styles)
+    fancy_lass.update_base_stats(124)
+    selected_style = [style for style in fancy_lass.styles if style.style_name == "[One Special Summer Day]"][0]
+    lunar_blade = [skill for style in fancy_lass.styles for skill in style.skills if skill.name == 'Lunar Blade'][0]
+    fancy_lass_attack = fancy_lass.attack(selected_style, lunar_blade, skill_rank, weapon, formation, equips,
+                                  mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                  weapon_stone)
+    silver_damage = sum(silver_attack) / 10
+    urpina_damage = sum(urpina_attack) / 10
+    fancy_lass_damage = sum(fancy_lass_attack) / 10
+    print(f'Storm Roar:  {silver_damage}')
+    print(f'Holy Shining Sword:  {urpina_damage}')
+    print(f'Lunar Blade+:  {fancy_lass_damage}')
+
+
+def test_shining_holy_sword():
+    shining_sword = {7025, 6750, 6704, 6842}
+    find_skill_power('Urpina', "[I'm Ready]", 'Holy Shining Sword', 6, 41, 221, 0, 0, shining_sword)
+
+
 if __name__ == '__main__':
-    # test_fire_feather()
-    # test_vortex_breaker()
+    test_fire_feather()
+    test_vortex_breaker()
     test_luna_fulgur()
-    # test_doll_dance()
+    test_doll_dance()
+    # luna_fulgur_v_cross_break()
+    test_cross_break()
+    test_shining_holy_sword()
+    # lunar_blade_vs_urps()

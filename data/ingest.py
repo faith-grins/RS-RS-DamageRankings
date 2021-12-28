@@ -265,7 +265,7 @@ def remove_dead_abilities(ability_list, style_list, debug=False):
 
 def cleanup():
     # fix known errors in the ingestion files
-    abilities = load_abilities()
+    abilities = load_abilities(reload=True)
     cleanup_skills()
     skills = load_skills(reload=True)
     weapons = load_weapons()
