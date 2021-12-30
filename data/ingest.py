@@ -263,6 +263,23 @@ def remove_dead_abilities(ability_list, style_list, debug=False):
     write_local_data_file('abilities.pkl', ability_list)
 
 
+def load_characters(styles_list, debug=False, reload=False):
+    if not reload:
+        local_characters = load_data_file('characters.pkl')
+        if local_characters:
+            characters = local_characters
+    if reload or not characters:
+        # initial load of characters
+        character_filename = os.path.join(ingest_directory, 'character.json')
+        characters = model.get_characters(character_filename, styles_list)
+        # serialize
+        write_local_data_file('characters.pkl', characters)
+    if debug:
+        for character in characters:
+            character.pretty_print()
+    return characters
+
+
 def cleanup():
     # fix known errors in the ingestion files
     abilities = load_abilities(reload=True)
