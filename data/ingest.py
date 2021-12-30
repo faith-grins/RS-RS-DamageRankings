@@ -155,6 +155,7 @@ def cleanup_styles():
 
 
 def load_abilities(debug=False, reload=False):
+    abilities = None
     if not reload:
         local_abilities = load_data_file('abilities.pkl')
         if local_abilities:
@@ -175,6 +176,7 @@ def load_abilities(debug=False, reload=False):
 
 
 def load_styles(debug=False, reload=False):
+    styles = None
     if not reload:
         local_styles = load_data_file('styles.pkl')
         if local_styles:
@@ -264,6 +266,7 @@ def remove_dead_abilities(ability_list, style_list, debug=False):
 
 
 def load_characters(styles_list, debug=False, reload=False):
+    characters = None
     if not reload:
         local_characters = load_data_file('characters.pkl')
         if local_characters:
@@ -290,6 +293,7 @@ def cleanup():
     dedupe_styles(styles)
     remove_dead_skills(skills, styles)
     remove_dead_abilities(abilities, styles, True)
+    load_characters(styles, reload=True)
 
 
 if __name__ == '__main__':

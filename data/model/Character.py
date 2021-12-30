@@ -38,7 +38,7 @@ class Character:
 
     def add_styles(self, styles_list):
         for style in styles_list:
-            if style.character_name == self.name:
+            if style.character_id == self.id:
                 self.styles.append(style)
 
     def attack(self, style, skill, skill_rank, weapon, formation_boost, equipment_mods, mastery_level,

@@ -53,6 +53,7 @@ class Style:
         self.skills = []
         self.abilities = []
         self._skill_ids = style_json_object['skill_ids']
+        self.character_id = style_json_object['character_id']
 
     def update_skills(self, skills_list):
         for skill in skills_list:
