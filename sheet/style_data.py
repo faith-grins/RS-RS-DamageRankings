@@ -1,15 +1,10 @@
-from data.ingest import load_styles
-
-
 sheet_name = 'StyleData'
 header_row = ['Character', 'Style Name', 'Rank', 'Skill1', 'Skill2', 'Skill3', 'Ability1', 'Ability2', 'Ability3', 'BaseStrMod', 'BaseEndMod', 'BaseDexMod', 'BaseAgiMod', 'BaseIntMod', 'BaseWilMod', 'BaseLovMod', 'BaseChaMod', 'Style%STR', 'Style+STR', 'Style%END', 'Style+END', 'Style%DEX', 'Style+DEX', 'Style%AGI', 'Style+AGI', 'Style%INT', 'Style+INT', 'Style%WIL', 'Style+WIL', 'Style%LOV', 'Style+LOV', 'Style%CHA', 'Style+CHA']
 
 
-def write_style_data(authentication, sheet_id):
-    styles = load_styles()
-    characters = {style.character_name for style in styles}
-    characters = [character for character in characters]
-    characters.sort()
+def write_style_data(authentication, sheet_id, styles, characters):
+    character_names = [c for c in {character.name for character in characters}]
+    character_names.sort()
     row_len = len(header_row)
     damage_sheet = authentication.open_by_key(sheet_id)
     style_sheet = damage_sheet.worksheet(sheet_name)
@@ -18,13 +13,13 @@ def write_style_data(authentication, sheet_id):
         sheet_range[i].value = header
     cell_number = row_len - 1
     row = 1
-    for character in characters:
-        character_styles = [style for style in styles if style.character_name == character]
+    for name in character_names:
+        character_styles = [style for character in characters if character.name == name for style in character.styles]
         for style in character_styles:
             row += 1
-            print(f'Setting data for row {row}:  {character} {style.style_name}')
+            print(f'Setting data for row {row}:  {name} {style.style_name}')
             cell_number += 1
-            sheet_range[cell_number].value = character
+            sheet_range[cell_number].value = name
             cell_number += 1
             sheet_range[cell_number].value = style.style_name
             cell_number += 1
