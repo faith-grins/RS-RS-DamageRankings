@@ -2,9 +2,10 @@ import data.model as model
 import urllib.request
 import os.path
 import pickle
+from pathlib import Path
 
 
-ingest_directory = os.path.join(os.path.dirname(__file__), 'ingest')
+ingest_directory = Path(__file__).parent / 'ingest'
 ingest_manifest = 'ingest_urls.csv'
 
 
@@ -175,6 +176,7 @@ def load_abilities(debug=False, reload=False):
 
 
 def load_styles(debug=False, reload=False):
+    styles = None
     if not reload:
         local_styles = load_data_file('styles.pkl')
         if local_styles:
@@ -264,6 +266,7 @@ def remove_dead_abilities(ability_list, style_list, debug=False):
 
 
 def load_characters(styles_list, debug=False, reload=False):
+    characters = None
     if not reload:
         local_characters = load_data_file('characters.pkl')
         if local_characters:

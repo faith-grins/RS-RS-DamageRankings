@@ -2,7 +2,7 @@ from .Common import DamageType
 from re import match
 
 
-_roman = {'Ⅳ': 4, 'Ⅰ': 1, 'Ⅱ': 2, 'Ⅲ': 3, 'Ⅴ': 5}
+_roman = {'Ⅳ': 4, 'Ⅰ': 1, 'Ⅱ': 2, 'Ⅲ': 3, 'Ⅴ': 5, 'Ⅵ': 6}
 
 
 class TypeBoost:
@@ -57,6 +57,8 @@ class Ability:
                     if rank == 0:
                         damage_value = 2.5
                     else:
+                        if damage['NamePattern'] == 'Fired Up' and rank >= 5:
+                            rank += 1
                         damage_value = 5 * rank
                 boost = TypeBoost(damage_value)
                 boost.full_hp = damage['FullHp'] == 'True'

@@ -15,6 +15,15 @@ class Character:
         self.max_base_lov_value = 0
         self.max_base_cha_value = 0
         self.base_stat_cap = 0
+        if 'gender' in json_object:
+            if json_object['gender'] == 1:
+                self.gender = 'M'
+            elif json_object['gender'] == 2:
+                self.gender = 'F'
+            else:
+                self.gender = 'N/A'
+        else:
+            self.gender = None
 
     def update_base_stats(self, stat_cap):
         self.base_stat_cap = stat_cap
