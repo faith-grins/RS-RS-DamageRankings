@@ -42,6 +42,9 @@ Lightning Amp,6,0,0,False,False,False
 Sun Amp,7,0,0,False,False,False
 Shade Amp,8,0,0,False,False,False
 Superior Zoning,0,0,15,False,False,False
+Superior Zoning,0,0,15,False,False,False
+Asura's Price,0,0,30,False,False,False
+Asura's Price,0,0,30,False,False,False
 Won't Let Go,0,0,15,False,False,False
 Axe Prowess,0,0,0,False,False,False
 Bow Prowess,0,0,0,False,False,False
@@ -51,3 +54,11 @@ M. Arts Prowess,0,0,0,False,False,False
 Spear Prowess,0,0,0,False,False,False
 Sword Prowess,0,0,0,False,False,False
 Strengthened Bravery,0,0,15,False,True,False
+Soul of G. Sword,0,0,15,False,False,False
+Soul of M. Arts,0,0,15,False,False,False
+Soul of Spear,0,0,15,False,False,False
+Soul of Sword,0,0,15,False,False,False
+Soul of Axe,0,0,15,False,False,False
+High Battle Tension,0,0,20,False,False,False
+High Counter Tension,0,0,20,False,False,False
+High Counter Tension,0,0,20,False,False,False
