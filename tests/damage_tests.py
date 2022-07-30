@@ -1,5 +1,54 @@
 from data.model import Character, Equipment, Common
-from data import load_styles
+from data import load_styles, load_characters
+
+
+class TestHarness:
+    character = None
+    style = None
+    skills = None
+
+
+def get_character(character_name, style_name, base_stat_cap):
+    json_character = {'name': character_name, 'id': '00001'}
+    test_character = Character.Character(json_character)
+    styles = load_styles()
+    test_character.add_styles(styles)
+    test_character.update_base_stats(base_stat_cap)
+    selected_style = [style for style in test_character.styles if style.style_name == style_name][0]
+    result = TestHarness()
+    result.character = test_character
+    result.style = selected_style
+    result.skills = [skill for style in test_character.styles for skill in style.skills]
+    return result
+
+
+def get_avg_damage(character_name, style_name, base_stat_cap, skill_name, manual_skill_power=None, manual_resist=None):
+    character = get_character(character_name, style_name, base_stat_cap)
+    test_skill = [skill for skill in character.skills if skill.name == skill_name][0]
+    equips = Equipment.EquipmentBonus()
+    weapon = Equipment.Weapon("testWeapon")
+    weapon.max_wp = 45
+    weapon.type = test_skill.weapon_type
+    formation = Common.FormationBonus()
+    if test_skill.weapon_type == Common.WeaponType.Fist:
+        formation.str = 0
+    else:
+        formation.str = 50
+    formation.dex = 50
+    formation.agi = 50
+    formation.int = 50
+    enemy_end = base_stat_cap
+    enemy_will = base_stat_cap
+    turn_number = 1
+    full_hp = turn_number == 1
+    weapon_stone = 20
+    resist = manual_resist if manual_resist else 0
+    if manual_skill_power:
+        test_skill.power_number = manual_skill_power
+    damage_values = character.character.attack(character.style, test_skill, 99, weapon, formation, equips,
+                                               50, enemy_end, enemy_will, resist, turn_number, full_hp,
+                                               weapon_stone)
+    return sum(damage_values) / len(damage_values)
 
 
 def test_fire_feather():
@@ -144,7 +193,7 @@ def find_skill_power(character_name, style_name, skill_name, skill_rank, mastery
     styles = load_styles()
     test_character.add_styles(styles)
     selected_style = [style for style in test_character.styles if style.style_name == style_name][0]
-    selected_skill = [skill for skill in selected_style.skills if skill.name == skill_name][0]
+    selected_skill = [skill for style in test_character.styles for skill in style.skills if skill.name == skill_name][0]
     # set stats
     test_character.update_base_stats(1)
     if selected_skill.weapon_type == Common.WeaponType.Fist:
@@ -154,11 +203,11 @@ def find_skill_power(character_name, style_name, skill_name, skill_rank, mastery
         selected_style.level_50_agi_mod = 0
         selected_style.str_bonus = 0
         selected_style.agi_bonus = 0
-    if selected_skill.weapon_type in (Common.WeaponType.IntFist, Common.WeaponType.Spell):
+    elif selected_skill.weapon_type in (Common.WeaponType.IntFist, Common.WeaponType.Spell):
         test_character.max_base_int_value = mainstat1 - 9
         selected_style.level_50_int_mod = 0
         selected_style.int_bonus = 0
-    if selected_skill.weapon_type in (Common.WeaponType.Bow, Common.WeaponType.Epee, Common.WeaponType.Gun):
+    elif selected_skill.weapon_type in (Common.WeaponType.Bow, Common.WeaponType.Epee, Common.WeaponType.Gun):
         test_character.max_base_dex_value = mainstat1 - 9
         selected_style.level_50_dex_mod = 0
         selected_style.dex_bonus = 0
@@ -176,6 +225,7 @@ def find_skill_power(character_name, style_name, skill_name, skill_rank, mastery
     full_hp = turn_number == 1
     weapon_stone = 0
     test_pass = False
+    final_power = None
     for skill_power in range(6, 99):
         selected_skill.power_number = skill_power
         damage_values = test_character.attack(selected_style, selected_skill, skill_rank, weapon, formation, equips,
@@ -185,7 +235,12 @@ def find_skill_power(character_name, style_name, skill_name, skill_rank, mastery
             print('  Exact match:  SkillPower={0}'.format(skill_power))
             print('  {0}'.format(damage_values))
             test_pass = True
+            final_power = skill_power
+        elif any([v in damage_values for v in expected_values]):
+            print('  Partial match:  SkillPower={0}'.format(skill_power))
+            print('  {0}'.format(damage_values))
     print('PASS' if test_pass else 'FAIL')
+    return final_power
 
 
 def luna_fulgur_v_cross_break():
@@ -294,7 +349,7 @@ def lunar_blade_vs_urps():
     json_character = {'name': 'Silver', 'id': '00001'}
     silver = Character.Character(json_character)
     silver.add_styles(styles)
-    silver.update_base_stats(124)
+    silver.update_base_stats(125)
     selected_style = [style for style in silver.styles if style.style_name == '[Silver-Style Test of Guts]'][0]
     storm_roar = [skill for skill in selected_style.skills if skill.name == 'Storm Roar'][0]
     silver_attack = silver.attack(selected_style, storm_roar, skill_rank, weapon, formation, equips,
@@ -304,7 +359,7 @@ def lunar_blade_vs_urps():
     json_character = {'name': 'Urpina', 'id': '00002'}
     urpina = Character.Character(json_character)
     urpina.add_styles(styles)
-    urpina.update_base_stats(124)
+    urpina.update_base_stats(125)
     selected_style = [style for style in urpina.styles if style.style_name == "[Now That's Dual Wielding!]"][0]
     cross_break = [skill for skill in selected_style.skills if skill.name == 'Cross Break'][0]
     cross_break.power_number = 28
@@ -314,22 +369,76 @@ def lunar_blade_vs_urps():
     urpina_attack = urpina.attack(selected_style, cross_break, skill_rank, weapon, formation, equips,
                                    mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
                                    weapon_stone)
+    cross_break.power_number = 36
+    dual_whirlwind_attack = urpina.attack(selected_style, cross_break, skill_rank, weapon, formation, equips,
+                                   mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                   weapon_stone)
     # Fancy Lass
     json_character = {'name': 'Final Empress', 'id': '00003'}
     fancy_lass = Character.Character(json_character)
     fancy_lass.add_styles(styles)
-    fancy_lass.update_base_stats(124)
+    fancy_lass.update_base_stats(125)
     selected_style = [style for style in fancy_lass.styles if style.style_name == "[One Special Summer Day]"][0]
     lunar_blade = [skill for style in fancy_lass.styles for skill in style.skills if skill.name == 'Lunar Blade'][0]
     fancy_lass_attack = fancy_lass.attack(selected_style, lunar_blade, skill_rank, weapon, formation, equips,
                                   mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
                                   weapon_stone)
-    silver_damage = sum(silver_attack) / 10
-    urpina_damage = sum(urpina_attack) / 10
-    fancy_lass_damage = sum(fancy_lass_attack) / 10
+    elegant_sands = [skill for skill in selected_style.skills if skill.name == 'Elegant Sands'][0]
+    elegant_sands_attack = fancy_lass.attack(selected_style, elegant_sands, skill_rank, weapon, formation, equips,
+                                          mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                          weapon_stone)
+    # Fancy Lad
+    json_character = {'name': 'Final Emperor', 'id': '00003'}
+    fancy_lad = Character.Character(json_character)
+    fancy_lad.add_styles(styles)
+    fancy_lad.update_base_stats(125)
+    selected_style = [style for style in fancy_lad.styles if style.style_name == "[At the Victory Banquet]"][0]
+    imperial_sword = [skill for style in fancy_lad.styles for skill in style.skills if skill.name == 'Imperial Sword'][0]
+    imperial_sword.power_number = 28
+    imperial_sword_attack = fancy_lad.attack(selected_style, imperial_sword, skill_rank, weapon, formation, equips,
+                                          mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                          weapon_stone)
+    imperial_sword.power_number = 39
+    wheel_swing_attack = fancy_lad.attack(selected_style, imperial_sword, skill_rank, weapon, formation, equips,
+                                          mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                          weapon_stone)
+    # Noel
+    json_character = {'name': 'Noel', 'id': '00003'}
+    noel = Character.Character(json_character)
+    noel.add_styles(styles)
+    noel.update_base_stats(125)
+    selected_style = [style for style in noel.styles if style.style_name == "[Fallen Hero]"][0]
+    steel_wave = [skill for style in noel.styles for skill in style.skills if skill.name == 'Steel Wave'][0]
+    steel_wave_attack = noel.attack(selected_style, steel_wave, skill_rank, weapon, formation, equips,
+                                          mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                          weapon_stone)
+    # Gustave
+    json_character = {'name': 'Gustave', 'id': '00003'}
+    gustave = Character.Character(json_character)
+    gustave.add_styles(styles)
+    gustave.update_base_stats(125)
+    selected_style = [style for style in gustave.styles if style.style_name == "[Leading the Steel Forces]"][0]
+    gustave_attack = gustave.attack(selected_style, steel_wave, skill_rank, weapon, formation, equips,
+                                          mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                          weapon_stone)
+    silver_damage = sum(silver_attack) // 10
+    urpina_damage = sum(urpina_attack) // 10
+    dual_whirlwind_damage = sum(dual_whirlwind_attack) // 10
+    fancy_lass_damage = sum(fancy_lass_attack) // 10
+    elegant_sands_damage = sum(elegant_sands_attack) // 10
+    imperial_sword_damage = sum(imperial_sword_attack) // 10
+    wheel_swing_damage = sum(wheel_swing_attack) // 10
+    steel_wave_damage = sum(steel_wave_attack) // 10
+    gustave_damage = sum(gustave_attack) // 10
     print(f'Storm Roar:  {silver_damage}')
     print(f'Holy Shining Sword:  {urpina_damage}')
+    print(f'Dual Whirlwind:  {dual_whirlwind_damage}')
     print(f'Lunar Blade+:  {fancy_lass_damage}')
+    print(f'Elegant Sands:  {elegant_sands_damage}')
+    print(f'Imperial Sword:  {imperial_sword_damage}')
+    print(f'Wheel Swing+:  {wheel_swing_damage}')
+    print(f'Steel Wave (Noel):  {steel_wave_damage}')
+    print(f'Steel Wave (Gustave):  {gustave_damage}')
 
 
 def test_shining_holy_sword():
@@ -337,12 +446,238 @@ def test_shining_holy_sword():
     find_skill_power('Urpina', "[I'm Ready]", 'Holy Shining Sword', 6, 41, 221, 0, 0, shining_sword)
 
 
+def georg_test():
+    styles = load_styles()
+    json_character = {'name': 'Georg', 'id': '00003'}
+    georg = Character.Character(json_character)
+    georg.add_styles(styles)
+    georg.update_base_stats(125)
+    ss_style = [style for style in georg.styles if style.style_name == "[Burden of Royalty]"][0]
+    final_strike = [skill for skill in ss_style.skills if skill.name == 'Final Strike'][0]
+    final_strike.power_number = 39
+    equips = Equipment.EquipmentBonus()
+    equips.str = 18
+    weapon = Equipment.Weapon("Khamsin")
+    weapon.type = Common.WeaponType.Greatsword
+    weapon.max_wp = 45
+    formation = Common.FormationBonus()
+    formation.str = 50
+    skill_rank = 99
+    enemy_end = 213
+    enemy_will = 213
+    mastery_rank = 41
+    enemy_resist = -35
+    turn_number = 1
+    full_hp = turn_number == 1
+    weapon_stone = 20
+    final_strike_attack = sum(georg.attack(ss_style, final_strike, skill_rank, weapon, formation, equips,
+                                  mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                  weapon_stone)) // 10
+    print(f'Final Strike: {final_strike_attack}')
+
+
+def test_triple_crush():
+    gustave = [c for c in load_characters(load_styles()) if c.name == 'Gustave'][0]
+    equips = Equipment.EquipmentBonus()
+    gustave.update_base_stats(125)
+    equips.str = 18
+    weapon = Equipment.Weapon("Death Sword")
+    weapon.type = Common.WeaponType.Greatsword
+    weapon.max_wp = 45
+    formation = Common.FormationBonus()
+    formation.str = 50
+    skill_rank = 99
+    enemy_end = 213
+    enemy_will = 213
+    mastery_rank = 41
+    enemy_resist = -35
+    turn_number = 1
+    full_hp = turn_number == 1
+    weapon_stone = 20
+    selected_style = [style for style in gustave.styles if style.style_name == "[Leading the Steel Forces]"][0]
+    selected_skill = [s for s in selected_style.skills if s.name == 'Steel Wave'][0]
+    selected_skill.power_number = 28
+    gustave_attack = gustave.attack(selected_style, selected_skill, skill_rank, weapon, formation, equips,
+                                    mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                    weapon_stone)
+    gustave_damage = sum(gustave_attack) // 10 * 3
+    print(f'Triple Crush: {gustave_damage}')
+
+
+def test_punishing_combo():
+    punishing_damage = [17162, 17670, 16907]
+    punishing_power = find_skill_power('Coppelia', '[Careful Preparations]', 'Punishing Combo', 99, 41, 285, 269, -45, punishing_damage)
+    styles = load_styles()
+    ki_power = 10
+    skill_rank = 99
+    equips = Equipment.EquipmentBonus()
+    equips.str = 11
+    equips.agi = 21
+    weapon = Equipment.Weapon("Cat's Claws")
+    weapon.max_wp = 45
+    weapon.type = Common.WeaponType.Fist
+    mastery = 41
+    formation = Common.FormationBonus()
+    formation.agi = 50
+    enemy_end = 200
+    enemy_wil = 200
+    enemy_resist = 30
+    turn_number = 1
+    full_hp = turn_number == 1
+    weapon_stone = 20
+    # Coppy
+    json_character = {'name': 'Coppelia', 'id': '00001'}
+    coppy = Character.Character(json_character)
+    coppy.add_styles(styles)
+    coppy.update_base_stats(125)
+    selected_style = [style for style in coppy.styles if style.style_name == '[Careful Preparations]'][0]
+    selected_skill = [skill for style in coppy.styles for skill in style.skills if skill.name == 'Punishing Combo'][0]
+    selected_skill.power_number = punishing_power
+
+    punishing_damage = coppy.attack(selected_style, selected_skill, skill_rank, weapon, formation, equips, mastery,
+                                    enemy_end, enemy_wil, enemy_resist, turn_number, full_hp, weapon_stone)
+    selected_skill.power_number = ki_power
+    ki_damage = coppy.attack(selected_style, selected_skill, skill_rank, weapon, formation, equips, mastery,
+                             enemy_end, enemy_wil, enemy_resist, turn_number, full_hp, weapon_stone)
+    selected_skill.power_number = 66
+    dance_damage = coppy.attack(selected_style, selected_skill, skill_rank, weapon, formation, equips, mastery,
+                                enemy_end, enemy_wil, enemy_resist, turn_number, full_hp, weapon_stone)
+    dance_damage = sum(dance_damage) // 10
+    punishing_combo_damage = (sum(punishing_damage) + sum(ki_damage) * 2) // 10
+    # Lyza
+    json_character = {'name': 'Lyza', 'id': '00001'}
+    lyza = Character.Character(json_character)
+    lyza.add_styles(styles)
+    lyza.update_base_stats(125)
+    selected_style = [style for style in lyza.styles if style.style_name == '[In Your Dreams]'][0]
+    selected_skill = [skill for style in lyza.styles for skill in style.skills if skill.name == 'Babel Crumble'][0]
+    babel_damage = lyza.attack(selected_style, selected_skill, skill_rank, weapon, formation, equips, mastery,
+                               enemy_end, enemy_wil, enemy_resist, turn_number, full_hp, weapon_stone)
+    babel_damage = sum(babel_damage) // 10
+    selected_skill = [skill for style in lyza.styles for skill in style.skills if skill.name == 'Sky Twister'][0]
+    twister_damage = lyza.attack(selected_style, selected_skill, skill_rank, weapon, formation, equips, mastery,
+                                 enemy_end, enemy_wil, enemy_resist, turn_number, full_hp, weapon_stone)
+    twister_damage = sum(twister_damage) // 10
+    # Boston
+    json_character = {'name': 'Boston', 'id': '00001'}
+    boston = Character.Character(json_character)
+    boston.add_styles(styles)
+    boston.update_base_stats(125)
+    selected_style = [style for style in boston.styles if style.style_name == '[Behold My Mighty Claws!]'][0]
+    selected_skill = [skill for style in boston.styles for skill in style.skills if skill.name == 'Rampaging Scissors'][0]
+    scissors_damage = boston.attack(selected_style, selected_skill, skill_rank, weapon, formation, equips, mastery,
+                               enemy_end, enemy_wil, enemy_resist, turn_number, full_hp, weapon_stone)
+    scissors_damage = sum(scissors_damage) // 10
+    print(f"Punishing Combo: {punishing_combo_damage}")
+    print(f"Destruction Doll Dance: {dance_damage}")
+    print(f"Babel Crumble: {babel_damage}")
+    print(f"Sky Twister: {twister_damage}")
+    print(f"Rampaging scissors: {scissors_damage}")
+
+
+def sarah_vs_claudia():
+    styles = load_styles()
+    characters = load_characters(styles)
+    sarah = [c for c in characters if c.name == 'Sarah'][0]
+    claudia = [c for c in characters if c.name == 'Claudia'][0]
+    sarah.update_base_stats(125)
+    claudia.update_base_stats(125)
+    band_together = [s for s in sarah.styles if s.style_name == '[Band Together]'][0]
+    escape_mazewood = [s for s in claudia.styles if s.style_name == '[Escape from Mazewood]'][0]
+    rain_of_arrows = [skill for style in sarah.styles for skill in style.skills if skill.name == 'Rain of Arrows'][0]
+    starry_rain = [s for s in escape_mazewood.skills if s.name == 'Starry Rain'][0]
+    # constants
+    enemy_end = 200
+    skill_rank = 99
+    equips = Equipment.EquipmentBonus()
+    equips.dex = 20
+    equips.agi = 21
+    weapon = Equipment.Weapon("Wave Note")
+    weapon.max_wp = 44
+    weapon.type = Common.WeaponType.Bow
+    mastery = 35
+    formation = Common.FormationBonus()
+    formation.dex = 50
+    enemy_wil = 200
+    enemy_resist = -35
+    turn_number = 1
+    full_hp = False
+    weapon_stone = 15
+    sarah_damage = sarah.attack(band_together, rain_of_arrows, skill_rank, weapon, formation, equips, mastery, enemy_end,
+                                enemy_wil, enemy_resist, turn_number, full_hp, weapon_stone)
+    claudia_damage = claudia.attack(escape_mazewood, starry_rain, skill_rank, weapon, formation, equips, mastery, enemy_end,
+                                enemy_wil, enemy_resist, turn_number, full_hp, weapon_stone)
+    print(f'Sarah damage: {sarah_damage}')
+    print(f'Claudia damage: {claudia_damage}')
+
+
+def rich_vs_urpina():
+    styles = load_styles()
+    # constants
+    equips = Equipment.EquipmentBonus()
+    equips.str = 18
+    weapon = Equipment.Weapon("Death Sword")
+    weapon.type = Common.WeaponType.Greatsword
+    weapon.max_wp = 45
+    formation = Common.FormationBonus()
+    formation.str = 50
+    skill_rank = 99
+    enemy_end = 213
+    enemy_will = 213
+    mastery_rank = 41
+    enemy_resist = -35
+    turn_number = 1
+    full_hp = turn_number == 1
+    weapon_stone = 20
+    # Rich
+    json_character = {'name': 'Rich', 'id': '00001'}
+    rich = Character.Character(json_character)
+    rich.add_styles(styles)
+    rich.update_base_stats(155)
+    selected_style = [style for style in rich.styles if style.style_name == '[Tofu Feeds My Anima]'][0]
+    selected_style.level_50_str_mod += 10
+    flame_frenzy = [skill for skill in selected_style.skills if skill.name == 'Flame Frenzy'][0]
+    flame_frenzy.power_number = 39
+    rich_attack = rich.attack(selected_style, flame_frenzy, skill_rank, weapon, formation, equips,
+                                  mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                  weapon_stone)
+    # Urps
+    json_character = {'name': 'Urpina', 'id': '00002'}
+    urpina = Character.Character(json_character)
+    urpina.add_styles(styles)
+    urpina.update_base_stats(155)
+    selected_style = [style for style in urpina.styles if style.style_name == "[I'm Ready]"][0]
+    shining_sword = [skill for skill in selected_style.skills if skill.name == 'Holy Shining Sword'][0]
+    urpina_attack = urpina.attack(selected_style, shining_sword, skill_rank, weapon, formation, equips,
+                                  mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                                  weapon_stone)
+    print("rich attack: {0}".format(rich_attack))
+    print("urpina attack: {0}".format(urpina_attack))
+
+
 if __name__ == '__main__':
-    test_fire_feather()
-    test_vortex_breaker()
-    test_luna_fulgur()
-    test_doll_dance()
+    # test_fire_feather()
+    # test_vortex_breaker()
+    # test_luna_fulgur()
+    # test_doll_dance()
     # luna_fulgur_v_cross_break()
-    test_cross_break()
-    test_shining_holy_sword()
+    # test_cross_break()
+    # test_shining_holy_sword()
     # lunar_blade_vs_urps()
+    # georg_test()
+    # test_triple_crush()
+    # find_skill_power('Matriarch', '[The Title of Matriarch]', 'Shining Glory', 99, 35, 274, 0, 0, [9261, 9619])
+    # test_punishing_combo()
+    # sarah_vs_claudia()
+    # rich_vs_urpina()
+    stat_cap = 159
+    print('Polka Scattered: {0}'.format(get_avg_damage('Polka Lynn Wood', '[Even If This Body Burns]', stat_cap, 'Scattered Explosions', manual_resist=-35) * 4))
+    print('Force Blaster: {0}'.format(get_avg_damage('Arsenal', '[Executing Smasher]', stat_cap, 'Force Blaster', manual_resist=-35) * 4))
+    gun_and_blade = get_avg_damage('Roufas', "[I'm the Top Brass]", stat_cap, 'Gun and Blade', manual_resist=-35)
+    gun_and_blade += get_avg_damage('Roufas', "[I'm the Top Brass]", stat_cap, 'Gun and Blade', manual_skill_power=77, manual_resist=-35)
+    print('Gun and Blade: {0}'.format(gun_and_blade))
+    print('Soul Burn: {0}'.format(get_avg_damage('Polka Lynn Wood', '[Even If This Body Burns]', stat_cap, 'Soul Burn', manual_resist=-35, manual_skill_power=48)))
+    print('Star Catastrophe: {0}'.format(get_avg_damage('Arsenal', '[Executing Smasher]', stat_cap, 'Star Catastrophe', manual_resist=-35)))
+    print('Thunder Blow: {0}'.format(get_avg_damage('Dorra', '[Terror of the Skies]', stat_cap, 'Thunder Blow', manual_resist=-35)))
+    print('Asura Revenge: {0}'.format(get_avg_damage('Asellus', '[New Lord of the Chateau]', stat_cap, "Asura's Strife", manual_resist=-35, manual_skill_power=60)))
+    print('Seven Sword: {0}'.format(get_avg_damage('Haniwa', '[A Legend Appears]', stat_cap, 'Seven Swords', manual_resist=-35) * 4))

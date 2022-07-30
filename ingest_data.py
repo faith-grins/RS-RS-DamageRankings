@@ -1,8 +1,9 @@
 import urllib.request
 import os.path
+from pathlib import Path
 
 
-ingest_directory = 'data/ingest'
+ingest_directory = Path(__file__).parent / 'data/ingest'
 ingest_manifest = 'ingest_urls.csv'
 
 
@@ -34,7 +35,11 @@ def get_ingest_files(directory):
     return ingest_file_manifest
 
 
-if __name__ == '__main__':
+def reload_ingest_manifest():
     for ingestion_file_object in get_ingest_files(ingest_directory):
         ingestion_file_object.ingest()
         ingestion_file_object.write(ingest_directory)
+
+
+if __name__ == '__main__':
+    reload_ingest_manifest()

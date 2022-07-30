@@ -11,7 +11,8 @@ VALUE_RENDER_OPTION = 'FORMULA'
 VALUE_INPUT_OPTION = 'RAW'
 
 stats_starting_row = 4
-stylte_stats_sheet = 'StyleStats'
+# style_stats_sheet = 'StyleStats'
+style_stats_sheet = 'TestSheet'
 style_stats_range = 'B4:T'
 style_final_str_column = 'StyleStats!M4:M'
 style_final_end_column = 'StyleStats!N4:N'
@@ -34,7 +35,7 @@ def login():
 
 def get_styles(auth):
     style_sheet = auth.open_by_key(SPREADSHEET_ID)
-    styles = style_sheet.worksheet(stylte_stats_sheet).get(style_stats_range, value_render_option=VALUE_RENDER_OPTION)
+    styles = style_sheet.worksheet(style_stats_sheet).get(style_stats_range, value_render_option=VALUE_RENDER_OPTION)
     characters = {}
     for i, s in enumerate(styles):
         if s[0] not in characters:
@@ -46,7 +47,7 @@ def get_styles(auth):
 
 def update_sheet(auth, characters):
     style_sheet = auth.open_by_key(SPREADSHEET_ID)
-    style_data_sheet = style_sheet.worksheet(stylte_stats_sheet)
+    style_data_sheet = style_sheet.worksheet(style_stats_sheet)
     style_data_sheet.update('A1', 'Testing')
 
 

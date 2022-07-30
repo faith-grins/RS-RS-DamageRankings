@@ -2,9 +2,10 @@ import data.model as model
 import urllib.request
 import os.path
 import pickle
+from pathlib import Path
 
 
-ingest_directory = os.path.join(os.path.dirname(__file__), 'ingest')
+ingest_directory = Path(__file__).parent / 'ingest'
 ingest_manifest = 'ingest_urls.csv'
 
 
