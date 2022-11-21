@@ -35,4 +35,3 @@ def write_skills_data(authentication, sheet_id, skills_list):
     print('Updating sheet...')
     skill_tab.update_cells(sheet_range, value_input_option='USER_ENTERED')
     print('Sheet successfully updated!')
-

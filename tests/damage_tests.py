@@ -1,5 +1,5 @@
 from data.model import Character, Equipment, Common
-from data import load_styles, load_characters
+from data import load_styles, load_characters, load_abilities
 
 
 class TestHarness:
@@ -9,10 +9,8 @@ class TestHarness:
 
 
 def get_character(character_name, style_name, base_stat_cap):
-    json_character = {'name': character_name, 'id': '00001'}
-    test_character = Character.Character(json_character)
     styles = load_styles()
-    test_character.add_styles(styles)
+    test_character = [c for c in load_characters(styles) if c.name == character_name][0]
     test_character.update_base_stats(base_stat_cap)
     selected_style = [style for style in test_character.styles if style.style_name == style_name][0]
     result = TestHarness()
@@ -22,13 +20,18 @@ def get_character(character_name, style_name, base_stat_cap):
     return result
 
 
-def get_avg_damage(character_name, style_name, base_stat_cap, skill_name, manual_skill_power=None, manual_resist=None):
+def get_avg_damage(character_name, style_name, base_stat_cap, skill_name, manual_skill_power=None, manual_resist=None, s_weapon=False):
     character = get_character(character_name, style_name, base_stat_cap)
     test_skill = [skill for skill in character.skills if skill.name == skill_name][0]
     equips = Equipment.EquipmentBonus()
     weapon = Equipment.Weapon("testWeapon")
-    weapon.max_wp = 45
     weapon.type = test_skill.weapon_type
+    if s_weapon:
+        weapon.max_wp = 35
+        weapon_stone = 90
+    else:
+        weapon.max_wp = 45
+        weapon_stone = 20
     formation = Common.FormationBonus()
     if test_skill.weapon_type == Common.WeaponType.Fist:
         formation.str = 0
@@ -41,7 +44,6 @@ def get_avg_damage(character_name, style_name, base_stat_cap, skill_name, manual
     enemy_will = base_stat_cap
     turn_number = 1
     full_hp = turn_number == 1
-    weapon_stone = 20
     resist = manual_resist if manual_resist else 0
     if manual_skill_power:
         test_skill.power_number = manual_skill_power
@@ -655,6 +657,73 @@ def rich_vs_urpina():
     print("urpina attack: {0}".format(urpina_attack))
 
 
+def rich_vs_dune():
+    styles = load_styles()
+    # constants
+    equips = Equipment.EquipmentBonus()
+    equips.str = 18
+    weapon = Equipment.Weapon("Death Sword")
+    weapon.type = Common.WeaponType.Greatsword
+    weapon.max_wp = 45
+    formation = Common.FormationBonus()
+    formation.str = 50
+    skill_rank = 99
+    enemy_end = 213
+    enemy_will = 213
+    base_stats = 163
+    mastery_rank = 41
+    enemy_resist = -35
+    turn_number = 1
+    full_hp = turn_number == 1
+    weapon_stone = 20
+    # Rich
+    rich_attack = get_avg_damage('Rich', '[Tofu Feeds My Anima]', base_stats, 'Flame Frenzy', manual_skill_power=39, manual_resist=enemy_resist, s_weapon=False)
+    # Alloces
+    alloces_attack = get_avg_damage('Alloces', '[Born to Battle]', base_stats, 'Grand Trample', manual_resist=enemy_resist, s_weapon=False)
+    # Urpina
+    urpina_attack = get_avg_damage('Urpina', "[I'm Ready]", base_stats, 'Holy Shining Sword', manual_resist=enemy_resist)
+    urpina_sun_flash = get_avg_damage('Urpina', "[I'm Ready]", base_stats, 'Sun Flash', manual_resist=enemy_resist)
+    # Femp
+    emp_attack = get_avg_damage('Final Emperor', "[At the Victory Banquet]", base_stats, 'Imperial Sword', manual_resist=enemy_resist, manual_skill_power=28)
+    wheel_swing = get_avg_damage('Final Emperor', "[At the Victory Banquet]", base_stats, 'Imperial Sword', manual_resist=enemy_resist, manual_skill_power=39)
+    sun_flash = get_avg_damage('Final Emperor', "[At the Victory Banquet]", base_stats, 'Sun Flash', manual_resist=enemy_resist)
+    # Dune
+    dune = get_character('Silver', '[Silver Dragon]', base_stats)
+    selected_style = dune.style
+    dune = dune.character
+    selected_style.level_50_str_mod = 118
+    abilities = load_abilities()
+    weapon.max_wp = 45
+    weapon_stone = 20
+    fired_up_6 = [a for a in abilities if a.name == 'Fired Up Ⅵ'][0]
+    # fired_up_6 = [a for a in abilities if a.name == 'Fired Up Ⅴ'][0]
+    nuthin = [a for a in abilities if a.name == 'Personal Discovery'][0]
+    selected_style.abilities[0] = fired_up_6
+    selected_style.abilities[1] = nuthin
+    selected_style.abilities[2] = nuthin
+    big_slash = [skill for skill in selected_style.skills if skill.name == 'Double Vertical'][0]
+    big_slash.power_number = 30
+    dune_attack1 = dune.attack(selected_style, big_slash, skill_rank, weapon, formation, equips,
+                               mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                               weapon_stone)
+    big_slash.power_number = 18
+    skill_rank = 1
+    enemy_resist = 0
+    # dune_attack2 = [0, 0, 0]
+    dune_attack2 = dune.attack(selected_style, big_slash, skill_rank, weapon, formation, equips,
+                               mastery_rank, enemy_end, enemy_will, enemy_resist, turn_number, full_hp,
+                               weapon_stone)
+    dune_damage = sum(dune_attack1) / len(dune_attack1) + sum(dune_attack2) / len(dune_attack2)
+    print("rich attack: {0}".format(rich_attack))
+    print("dune attack: {0}".format(dune_damage))
+    print("alloces attack: {0}".format(alloces_attack))
+    print("urpina attack: {0}".format(urpina_attack))
+    print("femp attack: {0}".format(emp_attack))
+    print("wheel swing: {0}".format(wheel_swing))
+    print("sun flash: {0}".format(sun_flash))
+    print("urpina sun flash: {0}".format(urpina_sun_flash))
+
+
 if __name__ == '__main__':
     # test_fire_feather()
     # test_vortex_breaker()
@@ -670,14 +739,27 @@ if __name__ == '__main__':
     # test_punishing_combo()
     # sarah_vs_claudia()
     # rich_vs_urpina()
-    stat_cap = 159
-    print('Polka Scattered: {0}'.format(get_avg_damage('Polka Lynn Wood', '[Even If This Body Burns]', stat_cap, 'Scattered Explosions', manual_resist=-35) * 4))
-    print('Force Blaster: {0}'.format(get_avg_damage('Arsenal', '[Executing Smasher]', stat_cap, 'Force Blaster', manual_resist=-35) * 4))
-    gun_and_blade = get_avg_damage('Roufas', "[I'm the Top Brass]", stat_cap, 'Gun and Blade', manual_resist=-35)
-    gun_and_blade += get_avg_damage('Roufas', "[I'm the Top Brass]", stat_cap, 'Gun and Blade', manual_skill_power=77, manual_resist=-35)
+    stat_cap = 170
+    res = -35
+    # sun_flash = get_avg_damage('Final Emperor', "[At the Victory Banquet]", stat_cap, 'Sun Flash',
+    #                            manual_resist=res)
+    # urpina_sun_flash = get_avg_damage('Urpina', "[I'm Ready]", stat_cap, 'Sun Flash', manual_resist=res)
+    #
+    gun_and_blade = get_avg_damage('Roufas', "[I'm the Top Brass]", stat_cap, 'Gun and Blade', manual_resist=res,
+                                   s_weapon=True)
+    unsheathe = get_avg_damage('Roufas', "[I'm the Top Brass]", stat_cap, 'Gun and Blade', manual_skill_power=77,
+                               manual_resist=res, s_weapon=True)
     print('Gun and Blade: {0}'.format(gun_and_blade))
-    print('Soul Burn: {0}'.format(get_avg_damage('Polka Lynn Wood', '[Even If This Body Burns]', stat_cap, 'Soul Burn', manual_resist=-35, manual_skill_power=48)))
-    print('Star Catastrophe: {0}'.format(get_avg_damage('Arsenal', '[Executing Smasher]', stat_cap, 'Star Catastrophe', manual_resist=-35)))
-    print('Thunder Blow: {0}'.format(get_avg_damage('Dorra', '[Terror of the Skies]', stat_cap, 'Thunder Blow', manual_resist=-35)))
-    print('Asura Revenge: {0}'.format(get_avg_damage('Asellus', '[New Lord of the Chateau]', stat_cap, "Asura's Strife", manual_resist=-35, manual_skill_power=60)))
-    print('Seven Sword: {0}'.format(get_avg_damage('Haniwa', '[A Legend Appears]', stat_cap, 'Seven Swords', manual_resist=-35) * 4))
+    print('Unsheathe: {0}'.format(unsheathe))
+    sparkle_ice = get_avg_damage('Jo', "[Hot or Cold?]", stat_cap, 'Sparkling Ice', manual_skill_power=59,
+                                 manual_resist=res, s_weapon=True)
+    crimson_flare = get_avg_damage('Jo', "[Hot or Cold?]", stat_cap, 'Sparkling Ice', manual_skill_power=62,
+                                   manual_resist=res, s_weapon=True)
+    print('Sparkling Ice: {0}'.format(sparkle_ice))
+    print('Crimson Flare: {0}'.format(crimson_flare))
+    conflag = get_avg_damage('Genryu', '[Fighting Together]', stat_cap, 'Chilling Conflagration', manual_resist=res,
+                             s_weapon=True, manual_skill_power=90)
+    print('Chilling Conflagration: {0}'.format(conflag))
+    leave_it = get_avg_damage('So-Cho', '[Leaving Us Behind?]', stat_cap, 'Leave It to Me', manual_resist=-45,
+                              s_weapon=True, manual_skill_power=78)
+    print('So-Cho Kamikaze: {0}'.format(leave_it))
