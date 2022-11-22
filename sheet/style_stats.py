@@ -9,7 +9,7 @@ def write_stats_data(authentication, sheet_id, styles, characters):
     character_names.sort()
     damage_sheet = authentication.open_by_key(sheet_id)
     style_sheet = damage_sheet.worksheet(sheet_name)
-    sheet_range = style_sheet.range(4, 1, len(styles) + 4, 27)
+    sheet_range = style_sheet.range(4, 1, len(styles) + 4, 28)
     cell_number = -1
     header_rows = 2
     row = 1
@@ -24,25 +24,26 @@ def write_stats_data(authentication, sheet_id, styles, characters):
             current_row = row + header_rows
             row_values.append(style.rank)
             row_values.append(style.character_name)
+            row_values.append('')
             row_values.append(style.style_name)
             # Base stats
-            row_values.append(f'=vlookup($C{current_row},StyleData,9,FALSE)+$C$2')
-            row_values.append(f'=vlookup($C{current_row},StyleData,10,FALSE)+$C$2')
-            row_values.append(f'=vlookup($C{current_row},StyleData,11,FALSE)+$C$2')
-            row_values.append(f'=vlookup($C{current_row},StyleData,12,FALSE)+$C$2')
-            row_values.append(f'=vlookup($C{current_row},StyleData,13,FALSE)+$C$2')
-            row_values.append(f'=vlookup($C{current_row},StyleData,14,FALSE)+$C$2')
-            row_values.append(f'=vlookup($C{current_row},StyleData,15,FALSE)+$C$2')
-            row_values.append(f'=vlookup($C{current_row},StyleData,16,FALSE)+$C$2')
+            row_values.append(f'=$D$2+{style.base_str_bonus}')
+            row_values.append(f'=$D$2+{style.base_end_bonus}')
+            row_values.append(f'=$D$2+{style.base_dex_bonus}')
+            row_values.append(f'=$D$2+{style.base_agi_bonus}')
+            row_values.append(f'=$D$2+{style.base_int_bonus}')
+            row_values.append(f'=$D$2+{style.base_wil_bonus}')
+            row_values.append(f'=$D$2+{style.base_lov_bonus}')
+            row_values.append(f'=$D$2+{style.base_cha_bonus}')
             # Style adjusted stats
-            row_values.append(f'=FLOOR(MAX($D{character_first_row}:$D{character_last_row})*(1+VLOOKUP($C{current_row},StyleData,17,FALSE)/100))+VLOOKUP($C{current_row},StyleData,18,FALSE)')
-            row_values.append(f'=FLOOR(MAX($E{character_first_row}:$E{character_last_row})*(1+VLOOKUP($C{current_row},StyleData,19,FALSE)/100))+VLOOKUP($C{current_row},StyleData,20,FALSE)')
-            row_values.append(f'=FLOOR(MAX($F{character_first_row}:$F{character_last_row})*(1+VLOOKUP($C{current_row},StyleData,21,FALSE)/100))+VLOOKUP($C{current_row},StyleData,22,FALSE)')
-            row_values.append(f'=FLOOR(MAX($G{character_first_row}:$G{character_last_row})*(1+VLOOKUP($C{current_row},StyleData,23,FALSE)/100))+VLOOKUP($C{current_row},StyleData,24,FALSE)')
-            row_values.append(f'=FLOOR(MAX($H{character_first_row}:$H{character_last_row})*(1+VLOOKUP($C{current_row},StyleData,25,FALSE)/100))+VLOOKUP($C{current_row},StyleData,26,FALSE)')
-            row_values.append(f'=FLOOR(MAX($I{character_first_row}:$I{character_last_row})*(1+VLOOKUP($C{current_row},StyleData,27,FALSE)/100))+VLOOKUP($C{current_row},StyleData,28,FALSE)')
-            row_values.append(f'=FLOOR(MAX($J{character_first_row}:$J{character_last_row})*(1+VLOOKUP($C{current_row},StyleData,29,FALSE)/100))+VLOOKUP($C{current_row},StyleData,30,FALSE)')
-            row_values.append(f'=FLOOR(MAX($K{character_first_row}:$K{character_last_row})*(1+VLOOKUP($C{current_row},StyleData,31,FALSE)/100))+VLOOKUP($C{current_row},StyleData,32,FALSE)')
+            row_values.append(f'=FLOOR(MAX($E{character_first_row}:$E{character_last_row})*(1+{style.level_50_str_mod}/100))+{style.str_bonus}')
+            row_values.append(f'=FLOOR(MAX($F{character_first_row}:$F{character_last_row})*(1+{style.level_50_end_mod}/100))+{style.end_bonus}')
+            row_values.append(f'=FLOOR(MAX($G{character_first_row}:$G{character_last_row})*(1+{style.level_50_dex_mod}/100))+{style.dex_bonus}')
+            row_values.append(f'=FLOOR(MAX($H{character_first_row}:$H{character_last_row})*(1+{style.level_50_agi_mod}/100))+{style.agi_bonus}')
+            row_values.append(f'=FLOOR(MAX($I{character_first_row}:$I{character_last_row})*(1+{style.level_50_int_mod}/100))+{style.int_bonus}')
+            row_values.append(f'=FLOOR(MAX($J{character_first_row}:$J{character_last_row})*(1+{style.level_50_wil_mod}/100))+{style.wil_bonus}')
+            row_values.append(f'=FLOOR(MAX($K{character_first_row}:$K{character_last_row})*(1+{style.level_50_lov_mod}/100))+{style.lov_bonus}')
+            row_values.append(f'=FLOOR(MAX($L{character_first_row}:$L{character_last_row})*(1+{style.level_50_cha_mod}/100))+{style.cha_bonus}')
             # Formation Final Stats
             str_bonus = 5 if style.weapon_type in str_weapon_types else 0
             dex_bonus = 5 if style.weapon_type in dex_weapon_types else 0
