@@ -1,6 +1,5 @@
 from data import load_styles
 from jsonpickle import encode, decode
-from json import dump
 from data.dataset.find_missing_base_stats import update_base_style_stats
 
 
@@ -26,5 +25,6 @@ def reconstruct_styles(input_file):
 
 
 if __name__ == '__main__':
-    styles = reconstruct_styles('styles_with_updated_stats.json')
-    print(styles[0].base_str_bonus)
+    test_styles = reconstruct_styles('styles_with_updated_stats.json')
+    human_m = test_styles[2]
+    human_m.pretty_print()
