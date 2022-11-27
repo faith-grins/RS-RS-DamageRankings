@@ -1,5 +1,6 @@
 from enum import Enum
 from .Common import WeaponType
+from json import dumps
 
 
 class StyleBonusType(Enum):

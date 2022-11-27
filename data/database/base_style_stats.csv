@@ -1,0 +1,792 @@
+Character,Style,STR,END,DEX,AGI,INT,WIL,LOV,CHA
+Human Male,[I Love Heights!],4,-1,2,4,1,2,-3,0
+Human Male,[A Long-Awaited Rampage!],-2,5,10,1,-2,-1,0,-3
+Human Male,[This Is the One!],-2,7,8,1,-2,-1,-2,0
+Human Female,[Expert Climber],-1,4,2,5,-3,3,4,-3
+Human Female,[Now in Color!],5,-3,2,10,-3,-2,1,0
+Human Female,[The Heroine Arrives!],7,-1,-1,8,-2,0,-1,0
+Esper Girl,[I'm Not a Mage!],-4,2,1,-2,8,6,-1,1
+Esper Girl,[Supernatural Powers!],-5,-4,-2,1,10,6,2,1
+Esper Girl,[I Will Decide for Myself!],-5,-2,-1,1,5,8,5,0
+So-Cho,[Leaving Us Behind?],-7,4,7,0,-2,5,0,2
+Creator,[I've Been Waiting for You],-3,3,2,6,2,-2,1,4
+Creator,[Destiny of Mortals],-3,-1,-2,4,7,4,1,1
+Creator,[Such a Monotonous Job],0,-3,-2,3,5,6,-2,1
+Creator,[Absolute Being],-3,-1,0,8,5,1,-2,1
+Mech,"[Your Best Equipment, Please]",-1,5,10,1,-1,-2,-2,-2
+Mech,[Explore Unknown Worlds],-2,2,8,6,-1,-2,-2,0
+Sensei,[Oh? Is It Time?],5,3,-1,4,-3,3,-1,-2
+Sensei,[Is It My Turn?],1,-2,1,10,-3,-1,4,0
+Sensei,[Proper Posture Is Key!],7,-1,-1,8,0,-1,0,-1
+Father,[How's Mom?],-2,0,6,3,3,0,0,0
+Father,[Power of a Guardian],-1,6,8,0,-2,1,0,-3
+Mask,[I Have My Reasons],5,8,0,-1,-1,1,-2,-1
+Goddess,[Call Me Goddess!],-4,4,-3,5,1,1,3,2
+Goddess,[Goddess System Reboot],-2,0,-1,2,6,4,3,-1
+Hana,[Hana of Hatchobori],3,-2,-2,8,8,-3,-3,0
+Ki,[Blessings Upon You!],-5,-3,-3,3,10,0,6,1
+Arsenal,[Executing Smasher],-1,5,10,0,0,-1,-3,-2
+Arsenal,[The World's Last Defense],-4,1,5,4,-1,2,0,3
+Apollo,[A New God],-3,3,1,3,-1,4,-2,4
+Apollo,[The MAGI Unleashed],-4,0,1,6,7,1,-2,1
+Apollo,[The Winged One],-3,0,0,2,5,6,0,0
+Haniwa,[What Is This?],2,3,0,5,-3,3,-4,3
+Haniwa,[A Legend Appears],5,-2,-1,10,0,0,-3,0
+Arthur,[To Save the World],10,1,-1,5,-2,-4,-1,1
+Arthur,[Through Time and Space!],5,5,4,2,-6,2,0,-3
+Sharon,[Don't Leave Me!],5,6,1,-2,1,3,-2,-3
+Sharon,"[I'm Tough, You Know]",10,2,-1,3,-3,-2,1,0
+Borgin,[A Sage Who Saves],1,-2,5,3,0,5,-1,-2
+Borgin,"[Come, Talon!]",6,-2,0,-2,5,2,0,1
+Albert,[Left-handed Warrior],5,3,2,2,-1,-1,-4,3
+Albert,[Legendary Knight],4,6,1,1,-2,0,0,-2
+Albert,[Knight of the Holy Night],2,2,1,1,-2,0,0,4
+Albert,[I Must Grow Stronger],10,3,1,1,-7,3,-1,0
+Albert,[Rewards of the Trials],10,1,-1,4,-2,-2,0,0
+Albert,[Bear the Light of Hope],4,0,-1,6,-1,-3,3,1
+Albert,[With Entrusted Hopes],7,3,6,0,-4,-3,-3,1
+Jamil,[Thief Swift as the Wind],-5,2,8,3,2,0,0,-1
+Jamil,[The Phantom Thief Strikes!],-4,-1,5,5,2,1,0,1
+Jamil,[True King of Estamir],-2,-1,2,5,2,1,0,1
+Jamil,[I Hate the Sun],-2,-1,1,2,7,1,0,1
+Jamil,[On to Bigger Things],1,0,8,5,2,-2,-3,-2
+Jamil,[What a Ritzy Manor!],0,0,5,7,2,0,-3,-2
+Jamil,[Beauty Is a Sin...],-2,0,8,-1,2,0,-2,4
+Gray,[Wandering Adventurer],3,-1,5,1,-1,1,0,1
+Gray,[Seeker of the Blade's Truth],3,-1,2,2,2,0,0,0
+Gray,[Nothing Wrong with a Drink],2,-1,3,2,2,1,-1,0
+Gray,[I Won't Let You Interfere],6,0,2,4,-2,0,-1,0
+Gray,[I Want to Live Free],4,5,2,1,2,-1,-3,-1
+Gray,[The Call of Adventure],6,0,5,1,-1,2,-3,-2
+Hawke,[Ride the Wind!],1,7,5,2,0,-6,1,0
+Hawke,[I'm Captain Hawke!],0,2,6,3,0,0,0,-1
+Hawke,[Pirate's Pride],5,2,2,2,-2,-2,1,0
+Hawke,[Beyond the Horizon],7,5,2,2,-3,-2,-2,0
+Aisha,[Winter Gives Way to Spring],6,-2,2,5,0,-2,1,0
+Aisha,"[Come to Me, Butterflies]",3,3,2,3,-1,0,1,-2
+Aisha,[Never Given Chocolates],6,-5,2,8,0,-2,1,0
+Aisha,[Yumomi Is Fun!],8,1,2,5,-3,-1,-1,-1
+Aisha,[The Road to Tribal Chief],3,1,5,8,-3,-2,1,-3
+Claudia,[Guardian of the Forest],-5,2,9,4,0,-1,1,-1
+Claudia,[Heartbreaker],0,-1,6,3,0,-1,-2,4
+Claudia,[Daughter of the Emperor],1,0,4,4,1,0,0,0
+Claudia,[Escape from Mazewood],0,0,8,5,1,-1,1,-1
+Claudia,[Leave Mazewood],0,0,2,8,0,-1,0,0
+Claudia,[I Just Love Yukatas!],-2,0,2,3,5,-1,1,1
+Claudia,[Secret Watering Hole],-2,-2,6,8,-1,-2,1,1
+Claudia,"[Farewell, Mazewood!]",-2,-3,9,3,0,3,-2,1
+Barbara,[Passionate Dancer],6,3,4,0,-4,0,0,0
+Barbara,[Catch My Rose],4,2,3,0,-1,-1,1,0
+Barbara,[Leaf Dancer],3,9,4,0,-1,-6,0,0
+Barbara,[Clap to the Beat!],2,-1,0,0,5,0,0,-1
+Barbara,[Care for a Dance?],2,1,1,4,-3,-1,4,1
+Barbara,[A Dance for Joy!],7,3,3,2,-2,-2,-2,1
+Sif,[You Don't Cut It],8,10,2,1,-2,-7,0,0
+Sif,[Grace of the Valhallans],4,5,2,1,-3,-1,0,0
+Sif,[What's a Swimsuit?],10,4,1,0,-5,-3,1,1
+Sif,[Valhallan Warrior],10,4,1,0,-5,-3,1,1
+Sif,[Best of the Best!],10,4,1,2,-4,-2,1,-3
+Sif,[You Look Just Like Him],7,4,6,0,-3,-3,-1,-1
+Diana (RS1/MS),[Days Awaiting Happiness],-4,5,9,2,-1,0,0,-2
+Diana (RS1/MS),[Rose Knight Rush],2,1,3,6,-1,-1,0,-1
+Diana (RS1/MS),[My Favorite Swimsuit],-4,2,6,2,2,0,0,1
+Diana (RS1/MS),[I'm Forgetting Something],0,0,9,6,-1,-2,0,-1
+Dowd,"[I Can Do It, Too]",-4,1,10,6,-3,0,1,-2
+Galahad,[The Coveted Ice Sword],9,6,2,-1,-2,-2,-2,-1
+Galahad,[The Ice Sword's True Powers],7,0,1,-1,-1,6,-3,1
+Myriam,[Fire Mage Life],-5,-4,1,4,8,3,2,1
+Myriam,[Firestarter],-5,-3,1,6,5,3,2,1
+Myriam,[A Dream Eater Costume],-4,-5,1,1,11,3,2,1
+Myriam,[Behold My All-Foes Magic],-3,-4,1,1,10,6,0,-1
+Myriam,[Flame Vortex!],-6,2,-5,4,5,-2,2,4
+Myriam,[Gotta Have a Fire Mage!],-5,-4,-1,4,11,3,2,1
+Guella Ha,[I Smell Treasure],5,-3,1,7,-2,-2,1,0
+Guella Ha,[Where Shall We Go?],3,5,3,1,-2,-1,-3,3
+Guella Ha,"[Everyone, To Arms!]",3,5,3,1,-2,-2,0,0
+Sylvan,[Guardian of Beasts],3,-4,-5,10,6,3,-2,-2
+Brau,[Barrel of Fun],2,3,1,10,0,0,-2,-3
+Farah,[Not For Sale],3,-1,-3,10,3,-1,-2,0
+Farah,[Is Jamil Here Yet?],6,-1,-5,8,0,4,-2,-1
+Butcher,[Poison or Treasure?],3,0,2,5,2,0,-2,0
+Butcher,[Call Me the Shark Slayer],12,2,1,1,-4,-3,-1,1
+Butcher,[Now That's Piratin'!],6,7,1,-1,0,-1,-3,-1
+Neidhart,[The Black Prince],5,8,2,0,-2,-3,1,-2
+Neidhart,"[It's Not Much, But...]",9,2,3,1,-5,-1,0,0
+Neidhart,[Kayakith (Black Demon)],10,5,2,0,-3,-2,-1,-1
+Neidhart,[May Elore Protect You!],8,8,2,-1,-3,-3,-1,0
+Neidhart,[Time to Risk Your Life],5,2,5,5,-5,-3,-2,1
+Flammar,[With the Ruby of Fire],-5,-3,5,-2,8,4,2,0
+Aldora,[For Survival],1,0,-2,5,0,4,3,-2
+Aldora,[It's a Serious Match!],4,-3,1,2,8,1,-3,-2
+Darque,[Killer Darque],-3,-1,5,7,0,2,-3,1
+Darque,[Guild Master],-2,1,10,2,3,-3,-1,0
+Darque,[My Memories],-4,5,8,0,0,-2,4,0
+Darque,[Reviving the Guild],-3,2,8,2,-2,4,-3,1
+Frielei,[Years With the Obsidian Sword],8,-3,0,1,8,0,-4,-1
+Silver,[I Feel So Free!],5,2,6,4,-2,-3,-3,0
+Silver,[Silver Dragon],10,2,3,0,-2,-3,-1,0
+Silver,[Silver-Style Test of Guts],5,1,3,6,-3,-3,-3,4
+Silver,[Silver the Killer Is Here!],10,3,2,4,-5,-1,-3,-1
+Avi,[Tiny Feather],9,1,-2,6,-3,-1,-2,0
+Pyrix,[Flame Tyrant],10,3,-4,6,3,-3,-3,-3
+Scorn,[A Plan in Hand],-5,4,-2,1,8,3,-1,1
+Strife,[I Am Discord],-6,-1,1,4,10,3,0,-1
+Red Mage,[Meet the Red Mage],-5,-3,0,1,10,6,1,0
+Mirsa,[The Silver-Clad Warrior],5,7,-1,2,-1,2,-2,-2
+Mirsa,[Legendary Form],10,2,4,0,-2,-4,0,0
+Mirsa,[On the Eve of Battle],5,7,1,2,-4,2,-2,-1
+Mirsa,"[Oh, I Don't Drink]",8,-1,1,2,4,-3,-3,1
+Saruin,[Waiting for Revenge],1,3,5,3,0,2,-3,-2
+Saruin,[Stage of My Resurrection],6,0,2,0,6,2,-6,1
+Death,[Revere Death],-6,-1,-1,1,10,6,0,1
+Death,[Lord of the Dead],-2,2,-2,6,5,2,-2,1
+Death,[Forfeit Your Friend's Life],-5,4,1,1,8,0,2,-2
+Death,[Soul or Music],-3,-1,-3,6,8,3,-1,1
+Schirach,[Overflowing Powers of Darkness],-4,0,-2,3,7,4,1,1
+Schiele,[The Meaning of a Year],-3,-3,-2,6,5,1,1,4
+Schirach,"[Out of Our Sight, Wretch!]",-3,0,0,3,5,6,-2,1
+Leon,[Who Am I?],1,1,1,2,3,2,-5,2
+Leon,"[Who, If Not I?]",1,7,2,3,3,-6,-1,0
+Leon,[An Emperor's Resolve],-1,-2,1,2,6,-1,5,-2
+Gerard,[These Aren't Pajamas],3,5,2,2,1,0,3,-6
+Gerard,[A Successor's Resolve],3,5,2,2,1,-1,0,-3
+Gerard,[I Must Pass This On],3,2,3,3,1,-1,-1,-1
+Gerard,[The Empire Needs Us!],6,0,2,0,6,0,-2,-2
+Gerard,[With My Own Hands This Time],1,1,1,7,4,-1,-1,-1
+Final Emperor,[A Man Burdened by Destiny],5,3,3,0,-2,0,-1,0
+Final Emperor,[Sorry It's Not the Throne],2,2,2,2,-1,0,0,1
+Final Emperor,[A Dance Offering],9,3,2,-1,-3,-2,0,1
+Final Emperor,[Termite Deathmatch],7,8,2,-1,-2,-2,-2,1
+Final Emperor,[A Legacy of Lancers],9,3,0,-1,-3,4,-2,0
+Final Empress,[I Tried Not to Overdress],4,4,1,3,-3,-2,6,-3
+Final Empress,[The Power of the Moon],9,2,6,0,-3,-2,1,-3
+Final Empress,[One Special Summer Day],7,0,3,6,-2,-3,0,0
+Final Empress,[Dedicating This Sabre Dance],9,2,6,1,-1,-2,-2,-3
+Coppelia,[Liberated Automaton],2,8,1,3,-2,-3,1,-1
+Coppelia,[Imperial Waltz],5,2,1,5,-2,0,-1,-1
+Coppelia,[Brass Automaton],6,1,1,7,-2,-2,-1,0
+Coppelia,[Top Quality Maid Automaton],8,3,-1,5,-3,0,-3,0
+Victor,"[Behold, Flowing Slash!]",6,2,1,2,1,-2,6,-6
+Victor,[You Coward!],7,2,2,3,-2,0,-1,-1
+Victor,[All For Tomorrow],1,0,1,8,1,1,0,0
+Victor,[The Pride of Avalon],8,5,1,0,-1,-3,-1,-1
+Sekishusai,[Paving the Path],4,-5,3,8,3,-1,-3,0
+Sekishusai,[Just an Old Man],8,1,-1,0,0,3,-5,0
+James,[I Will Protect Avalon],4,0,4,3,1,0,5,-7
+Liza,[Don't Take Us Lightly],1,7,6,2,-1,-7,0,1
+Therese,[I Never Miss],-1,-7,3,8,4,0,2,1
+Therese,[Cornered Prey],-2,-1,8,5,3,-1,-2,1
+Aries,[By-The-Book Mage],-3,1,-3,-3,8,8,1,0
+Emerald,[Fire Arts Maiden],-2,1,1,3,5,1,-4,5
+Emerald,[Seeking Mastery of Fire],-5,-1,1,2,8,2,2,0
+Onix,[Elemental Variety],-4,-2,-1,5,10,1,1,0
+Hector,[Selfish Merc],4,3,3,1,-1,-1,-1,0
+Hector,[Picture with the Lion Mask],6,2,2,0,-1,-2,0,1
+Hector,[Hear My Song!],8,6,0,-2,-2,0,-1,0
+Hector,[Leave It to Mercs],6,3,2,5,-3,-2,-1,-1
+Orion,[I'll Change the World],3,4,3,1,-1,0,5,-6
+Andromache,[Feel My Power],6,6,3,-1,-5,1,1,-2
+Penelope,[Music Is All About Freedom],8,3,3,2,-3,0,-2,-2
+Wallenstein,[I Will Protect the Emperor],3,7,2,-1,-2,1,4,-5
+Hannibal,[Soul of the Imperial Guard],8,7,2,-3,-5,-2,1,1
+Hannibal,[The Strongest Lifeguard],6,3,1,-1,-5,6,1,-2
+Minerva,[Come Near at Your Peril],4,-2,3,1,-2,5,0,0
+Victoria,[I Promise Victory],7,8,0,-2,-5,0,0,1
+Bear,[You Shall Not Pass],3,8,0,1,-1,0,6,-8
+Bear,[Pride of Heavy Infantry],6,10,0,-2,-1,-1,-2,-2
+Shiyuan,[I Can Hold My Liquor],-3,-1,1,2,8,1,2,0
+Kongming,[Eight Gates Arts User],-5,-2,1,1,8,3,2,1
+Jubei,[Ready at All Times],7,2,2,1,-1,-2,-3,3
+Jubei,[As a Levante Guard],10,2,2,0,-2,-3,0,0
+Souji,[Living My One Life],7,-4,2,7,-1,-2,0,0
+Souji,[What I Can Do],8,1,2,7,-4,-3,-2,0
+Sharrkan,[Quench My Thirst],4,10,2,2,-1,-7,-1,0
+Jeanne,"[Men, Be Gone!]",5,-2,2,5,2,-2,-1,0
+Kriemhild,[You're Mine!],8,0,-1,4,0,-1,-2,1
+Nomad Fatima,[My Bow Will Protect You!],-7,-1,9,5,4,0,-1,1
+Georg,[A Holy Blade's Judgment],4,4,2,3,-1,-2,-7,6
+Georg,[Burden of Royalty],7,8,1,2,-3,0,-2,-2
+Sophia,[May My Prayers Reach You],2,2,1,1,2,1,0,-1
+Sophia,[Attire of a Holy Knight],5,2,1,1,-1,1,0,0
+Sophia,[Beautiful Flower],-1,2,-2,5,0,0,4,0
+Agatha,[Spells Are My True Power],2,-4,1,1,2,7,0,0
+Mariah,[The Sea Is My Friend],-1,-1,2,0,2,2,4,1
+Mariah,[Does This Uniform Suit Me?],9,0,2,1,-3,0,1,1
+Mariah,"[The Sea, My Strength]",4,-1,1,-1,1,1,6,-1
+Henrique,"[Merchants, Not Pirates]",7,0,2,5,-6,1,1,0
+Magellan,['Round the World!],8,0,2,5,-1,-2,-1,-1
+Eirik,[The Mu Are Vital],4,8,2,0,-2,-3,0,0
+Karl,[Training Moves Mountains],5,-4,2,4,-2,4,0,0
+Terry,[Great Plains' Free Spirit],8,1,0,4,-3,-4,1,0
+Sparrow,[Fast Fingers],-4,0,10,1,6,0,-2,-2
+Cat,[The Night Is Our Time],1,-6,4,10,2,-2,-1,1
+Cat,[This Cat Has Claws],1,-1,4,4,2,-2,-1,1
+Cat,[Today's an Exception],2,0,1,8,2,-2,-1,-1
+Cat,[Dressed for Summer],5,0,1,6,2,-1,-3,-1
+Cat,[I'm a Beast of Prey! Roar!],1,0,0,10,5,-2,-3,-1
+Rabbit (RS2),"[Yikes, Gotta Run!]",1,0,-2,7,7,-3,-3,1
+Kelut,[For the Frills],8,6,1,0,-6,0,1,-2
+Awe,[Salamander Pride],4,4,1,2,-4,-2,-1,-2
+Siero,[What Are the Glasses For?],-5,5,9,2,-1,0,0,-1
+Siero,[Termites Are My Mortal Enemy!],-2,3,3,4,4,-1,-2,1
+Thetis,[Into the Beautiful Lake],-2,-8,2,9,3,2,2,3
+Thetis,[A Nereid's Wish],-2,-2,2,3,3,2,5,0
+Windie,[The Sky Is My World],0,-2,7,3,2,0,4,-3
+Windie,[I Flew Straight Over],-5,1,10,4,2,0,1,-2
+Windie,[The Bow Is the Best],-1,-2,10,6,0,0,-1,-1
+Skya,[The View's Better Up Here],-1,-1,10,2,2,4,-1,-2
+Azami,[Light Armor Is Important],0,0,1,7,1,-1,-1,1
+Azami,[Want a Taste of Ninjutsu?],4,1,1,5,2,-3,-7,6
+Azami,[Returning Your Kindness],5,3,1,5,-1,-2,-1,-1
+Azami,[Water Veil Arts],4,0,1,5,2,-3,-1,0
+Azami,"[Look, Now I'm a Witch!]",5,0,0,9,1,-3,-2,0
+Azami,[I'm Your Opponent!],2,0,-2,9,5,-2,-3,0
+Orieve,[As the Priest's Daughter],-3,-3,1,-3,4,6,7,2
+Sagzaar,[For Our Vow],8,0,4,6,-1,-2,-4,-2
+Hiraga,[18th Generation Genius],0,-8,7,9,2,1,1,-1
+Prince Thomas,[Heroic Prince],-4,-2,7,6,1,1,1,0
+Vampire Lady,[Do I Look Human to You?],4,0,1,2,3,-2,-6,7
+Vampire Lady,[Naught But a Game],3,-1,1,3,3,-1,0,0
+Vampire Lady,[A Blood Test!],4,0,1,3,3,0,-1,2
+Vampire Lady,[Foolproof UV Protection],4,0,1,7,0,-1,-3,0
+Vampire Lady,[Cute in Anything],6,0,1,2,0,-2,-3,4
+Sephira,[Receive Your Judgment],5,9,2,2,-1,-7,-1,0
+Sephira,[Wind Whisperer of Hope],6,5,0,2,-1,-3,0,0
+Sephira,"[Faes Dress Up, Too]",9,3,1,1,-2,-2,-1,0
+Real Queen,[I'm Hungry],6,-1,-4,5,7,0,-3,0
+Real Queen,[Devouring Avalon],4,0,-4,10,5,0,-5,1
+Narwhal's Daughter,[Feared and Respected],-2,-1,-1,5,1,3,7,-1
+Narwhal's Daughter,[Could This Be a Dream?],-5,3,-2,0,9,3,4,-1
+Narwhal's Daughter,[I'm Subier!],-3,-1,-2,-1,9,6,4,-1
+Wagnas,"[All Strength, No Regrets]",-8,-5,2,10,5,2,1,1
+Wagnas,[True Hero],4,0,2,-1,1,1,1,0
+Wagnas,[For the Nation and Its People],4,-3,2,0,7,2,-2,-2
+Noel,[I Will Defend Myself],8,5,2,0,-1,-6,0,1
+Noel,[Vengeance Is Mine],7,2,2,1,-2,0,-2,-1
+Noel,[I Won't Forgive You Termites],8,-1,2,5,-4,0,-3,0
+Noel,[Fallen Hero],10,2,2,3,-4,-3,-3,1
+Rocbouquet,[I Hate Annoying People],-2,1,1,2,5,2,-1,2
+Rocbouquet,"[Watch Over Me, Brother]",-5,-1,1,1,8,3,1,1
+Rocbouquet,[Accept My Gift?],-3,1,1,2,5,2,2,-1
+Rocbouquet,[My Dream Is...],-6,-4,1,1,11,6,-1,1
+Rocbouquet,[It's a Daruma Celebration!],-10,-2,1,4,11,3,2,1
+Rocbouquet,[Squid Sashimi Is the Best!],-6,-1,1,6,8,1,2,0
+Rocbouquet,[Begone From My Sight],-5,-2,0,1,11,3,-1,4
+Subier,[The Sea Is My Domain],4,7,3,0,-1,-3,0,0
+Subier,[One Word: Sea!],8,4,2,2,-2,-2,-1,-1
+Subier,[Feel My Rage!],8,3,1,-2,-3,4,0,-1
+Dantarg,"[Grovel, Worms!]",7,5,1,3,-5,-1,1,-2
+Dantarg,[I'll Crush You!],4,3,2,4,-3,-2,0,0
+Dantarg,[Is No One Strong Enough?!],9,5,1,3,-3,-2,-2,-2
+Bokhohn,"[Please, Forgive Me!]",6,3,2,2,-1,-1,-2,0
+Bokhohn,[You've Made a Huge Mistake],3,4,1,2,1,-1,-1,-1
+Kzinssie,[I AM Kzinssie],8,3,2,3,-4,-1,-1,0
+Kzinssie,[Generous Hero],6,0,1,0,0,-2,-1,1
+Kzinssie,[Assimilation Is the Best],5,1,-2,5,4,-2,-2,0
+Julian,[I'll Defend Sinon],1,1,2,3,3,0,5,-6
+Julian,[Say Hi to My Fist],4,3,1,2,0,1,0,-2
+Julian,[Let's Pretend Tonight],1,2,1,3,2,0,0,-1
+Julian,[For You and You Alone],-1,-7,1,11,3,1,0,1
+Julian,[I Am Pumped!],4,5,-1,0,2,0,-1,0
+Julian,[Before Winter Comes],-1,3,1,0,0,6,0,1
+Thomas,[The Bent Family Name],7,3,0,1,-4,1,1,-1
+Thomas,[For Loanne],1,1,1,1,2,1,0,0
+Thomas,[You Should Also Read Books],4,-1,-2,-2,7,0,1,1
+Thomas,[A Test of One's Worth],0,-2,-1,5,5,1,0,-1
+Mikhail,[Marquis of Loanne],-3,0,6,2,2,1,-6,7
+Mikhail,[I Will Protect My Kingdom],-3,0,6,2,2,0,0,1
+Mikhail,"[Beautiful... Dress, I Mean]",-4,4,8,-1,0,1,0,-2
+Mikhail,"[I, Too, Have Ambitions]",-2,7,1,2,2,-3,0,-4
+Mikhail,[Proof of Trust],-10,0,9,5,2,2,0,1
+Mikhail,[Trusting My Back to You],-5,1,6,7,2,2,-3,-1
+Khalid,[Tornado],3,-2,1,8,-1,-1,0,1
+Khalid,[I Am the Tornado],7,2,1,3,-2,-2,0,0
+Khalid,[No Chasing Pipe Dreams],5,5,1,1,-1,-1,-2,-1
+Khalid,[A Hopeful Feeling],3,5,3,3,-3,-4,5,-5
+Khalid,[The True Khamsin],10,2,1,-1,-3,2,-2,1
+Khalid,[None Shall Pass!],10,2,4,2,-2,-1,-3,-2
+Sarah,[The Child of Destiny],-1,-2,8,3,1,-2,0,2
+Sarah,[I Like This Alone Time],-4,-1,10,6,-1,-2,0,2
+Sarah,[May This Be of Comfort!],-3,3,4,8,1,-2,-1,0
+Sarah,[Band Together],-2,-1,10,2,0,2,-1,1
+Sarah,[Doors to the Future],-3,-1,8,8,1,-2,-3,2
+Sarah,[I'll Finish This!],-3,-3,8,3,-1,4,0,2
+Ellen,[You Stay Quiet!],6,0,2,2,0,-2,1,0
+Ellen,[Nothing Like a Good Axe],6,4,2,2,0,-5,1,0
+Ellen,[Don't Make Me Wear This],4,-2,3,6,0,0,0,-1
+Ellen,[This Pack Is Heavy],8,1,5,2,-2,-2,-1,0
+Ellen,[Before the Abyss Gate],3,6,-1,5,-1,-2,0,0
+Ellen,[Do I Stand Out?],8,4,2,2,-3,-1,1,3
+Ellen,[Traveling Lighter],1,-1,7,1,-3,4,0,-5
+Ellen,[I'll Handle It],6,-1,1,7,0,0,-1,-2
+Monika,[Sister of the Marquis],-1,2,7,4,1,-3,0,0
+Monika,"[Hi There, I'm Monika]",0,3,4,4,1,1,-1,-3
+Monika,[Don't Tell My Brother],-3,-1,4,7,1,1,0,0
+Monika,[I'm Grateful to Everyone],-2,0,7,9,1,-1,-2,0
+Monika,[Free as a Bird],-2,-1,9,7,-1,-1,0,0
+Monika,"[Once Again, for the World]",-2,-1,7,4,6,-1,-2,-1
+Monika,[A New Journey Begins],-3,0,7,3,-1,6,-1,-1
+Katarina,[Masquerade],4,2,2,1,2,-2,0,0
+Katarina,[Leave This to Me!],6,2,3,1,-2,-1,-1,0
+Katarina,[Here's to a New Year],7,1,2,1,-1,-2,0,0
+Katarina,[The Real Reason],10,2,2,3,-2,-4,-2,0
+Katarina,[Awaken!],8,0,2,5,-3,0,-1,0
+Katarina,[Wandering Swordswoman],5,5,5,0,-8,3,-1,0
+Katarina,[Pride Regained],10,-2,5,0,-4,-3,-3,1
+Katarina,[Power Awakened],8,1,0,0,4,-1,-2,-2
+Tatyana,[The Name's Santa],14,3,1,0,-8,-3,1,1
+Tatyana,[Will I Make Friends?],8,5,1,1,-4,-1,1,-1
+Tatyana,[Call Me Candy],7,2,1,1,-2,-2,1,0
+Tatyana,[Not Unlucky At All],14,3,4,0,-5,-2,-2,-2
+Tatyana,[Tricks of Treats],14,2,-1,1,-5,3,0,0
+Muse,[Beautiful Blossom of Hope],-2,-7,1,0,4,9,4,2
+Muse,[Prayer-Filled Days],-2,-1,0,0,9,0,7,-1
+Muse,[I'll Wait for Your Return],-2,-1,-1,5,7,2,3,-1
+Charl,[Silver Glove Inheritor],2,1,1,3,5,-2,-1,0
+Charl,[Shucho Arts User],5,1,1,3,2,-2,-2,0
+Charl,[Protector of Muse],8,-1,-1,1,2,0,-1,1
+Nora,[I Can Enhance Your Weapon!],9,5,1,1,-4,0,-1,-2
+Nora,[Swing That Hammer],4,-1,1,5,2,0,-1,-1
+Nora,[Time for a Warmup],8,2,1,1,1,-3,-1,0
+Nora,[Let's Take a Break],3,0,1,6,5,-2,-2,-1
+Young Boy,[Another Destiny],8,3,2,5,-4,-3,-3,1
+Young Boy,[Light of Tomorrow],10,2,5,0,-4,-2,0,-2
+Robin,[I Am Robin the Crusader!],-6,3,10,4,1,1,0,-3
+Robin,[No Evil Will Go Unpunished!],-1,-4,7,7,1,0,0,0
+Robin,[The Reason for the Mask],-8,-3,3,10,4,1,0,0
+Robin,[I Can't Reveal My Identity],-2,-2,5,3,1,3,-1,2
+Robin (Fake),[I'm the Real Robin!],1,-4,5,11,-2,-1,-1,-1
+Robin (Fake),[I Have the Guts],-1,4,6,4,-3,-3,-1,-1
+Robin (Fake),[An Impostor!],-2,3,8,2,-2,0,-3,0
+Ward,[I'm Ward and I'm Broke],3,2,5,-1,-1,0,6,-5
+Ward,[Sharp-Dressed Man],8,3,2,-1,-3,-2,0,1
+Black,[The Treasure's All Mine],6,-1,1,3,1,-1,-1,1
+Black,[Living Legend],8,5,1,0,-3,2,-4,-1
+Black,"[Tonight, I Become the Wolf]",6,1,1,5,0,-1,-2,0
+Black,[Revival of the Legend],8,2,4,0,-1,-1,-1,0
+Black,[I Can Do It Meself],8,2,0,3,-1,2,-4,-1
+Herman,[I'll Get Even with Forneus],4,2,2,1,1,1,4,-6
+Fullbright XXIII,[Trade's the Ultimate Weapon],-2,-2,0,5,5,3,1,0
+Zhi Ling,[Give Us Our Daily Bread],-5,1,8,0,1,2,2,1
+Zhi Ling,[Empty Your Mind],1,4,3,5,-3,0,1,-1
+Bai Meiniang,"[A Little Massage, Please]",-5,-3,1,1,10,3,2,1
+Boston,[From World's End],5,-2,0,10,0,-1,1,-2
+Boston,[Behold My Mighty Claws!],7,-3,2,8,-3,-2,1,-1
+Boston,[Order Up! Shrimp Gyoza!],5,-2,0,10,0,-1,1,-2
+Boston,[Time to Set Sail],7,-1,-1,5,0,3,-2,-1
+Faerie,[Spear of Punishment],6,-2,3,5,0,-4,1,1
+Faerie,[I'm Rocbouquet!],4,-3,3,8,0,-3,1,-1
+Faerie,[Welcome to Fairyville!],9,-4,1,4,-1,1,1,0
+Faerie,[Just an Innocent Faerie],7,-3,3,9,0,-5,-1,-1
+Faerie,[It's Not Poisoned],9,-3,-1,7,-2,-2,0,1
+Rukh,[Elephant in the Room],6,10,1,0,-2,-7,1,0
+Rukh,[But Rukh Has Two Legs],0,0,0,0,0,0,0,0
+Rukh,[War Elephant],4,7,1,-1,-5,6,-1,-1
+Flurry,[The Ultimate Santa Claus],2,6,1,-1,-2,-2,1,4
+Flurry,[I Am Flurry],4,2,2,0,-2,3,0,0
+Flurry,[I'm Fuming],9,3,1,-1,-3,-3,1,1
+Flurry,[My Final Battle!],2,2,4,4,-2,-1,1,0
+Undine,[I Have a Request],-8,0,2,2,11,2,1,0
+Undine,[Genbu Arts Specialist],-3,-2,0,1,6,4,6,-2
+Undine,[The Joys of Teaching],-4,-2,0,1,8,4,4,1
+Undine,[Volcano Is the Enemy],-3,-3,0,6,8,2,2,-1
+Undine,[Genbu Arts Customs],-5,-3,1,4,11,3,-1,1
+Leonid,[The Rose Suits Me],-1,-1,4,3,2,0,-5,7
+Leonid,[Defender of the Holy Grail],1,0,2,4,2,0,-3,3
+Leonid,[First Count of Podorui],-2,3,-1,8,2,1,-1,-1
+Leonid,[Mortal Memory],2,-1,1,4,2,-1,1,0
+Leonid,[Do You Desire My Power?],5,-3,-2,3,-1,4,1,1
+Leonid,[Life or Death],0,-2,1,8,5,1,-1,-2
+Maximus,[Villainy Is Fun],-3,3,0,3,6,10,-5,-4
+Professor,[I'm a GENIUS!],-1,1,7,3,4,-1,-4,-1
+Professor,[My New Invention],-3,0,3,5,7,0,-1,1
+Volcano,[Shucho Mage Volcano],-8,1,1,2,11,2,2,-1
+Volcano,[I'll Gladly Work with You],-7,-2,1,1,8,3,5,1
+Volcano,[Budding Talent],-5,-2,1,4,5,3,2,1
+Volcano,[Where'd She Go?],-9,-1,1,1,5,6,7,-1
+Volcano,[Basics of Shucho Arts],-6,-1,-2,4,11,3,2,0
+Fatima,[Happy Bride],-3,2,7,5,1,0,0,-2
+Fatima,[My Forever Light],-1,5,7,4,1,-6,0,0
+Fatima,[One Night of Joy],-3,-3,9,4,4,0,0,0
+Gwayne,[Unleashing Hidden Power],2,3,2,10,0,-3,-2,-1
+Gwayne,"[Abyssal Demon, Begone!]",7,-3,-1,8,0,-3,1,0
+Matriarch,[Vanquish the Sinistrals!],10,0,0,3,-3,-1,-1,0
+Matriarch,[The Title of Matriarch],8,2,-1,5,-5,-3,1,1
+Matriarch,[Leading the People],8,7,1,-3,-4,-1,0,0
+Matriarch,[You Are the Hero],10,1,1,-1,-4,3,1,-1
+Ottoman,[Peerless Swordsman],8,-1,5,0,2,-3,-3,1
+Ottoman,[Left Arm of Iron Defense],4,1,2,5,2,-2,-2,-1
+Paulus,[Unbeatable Commander],3,6,6,0,-5,-1,0,0
+Paulus,[Lieutenant in Alloces's Army],10,3,2,3,-3,-2,-1,-1
+Paulus,[Greatest Obstacle],8,3,1,5,-3,-3,-2,1
+Paulus,[May Your Souls Be at Rest],5,3,6,0,1,-3,-2,-2
+Thorpe,[The Matriarch's Helm],4,6,4,-2,1,-2,-1,-1
+Thorpe,[Leading the Charge],10,1,0,3,-3,-3,1,1
+Vassault,[The Matriarch's Advisor],-4,4,1,-1,2,2,5,0
+Vassault,[Seeker of Genbu Arts],-6,-1,-2,1,10,6,2,1
+Vassault,[Victory in Sight],-6,-4,1,4,5,6,-1,4
+Vassault,[Creation of New Magic],-5,-2,0,6,8,3,2,-1
+Ferdinand,[Like a Raging Lion],4,7,4,2,-4,-2,-1,0
+Ferdinand,[First Marquis of Loanne],10,0,0,5,-2,-3,-2,0
+Ferdinand,[I'll Lead the Charge!],5,-1,1,7,-4,2,-1,0
+Ferdinand,[Last Line of Defense],10,5,1,2,-1,-4,-3,-2
+Hilda,[Lady Hilda Ausbach],-3,-1,8,-1,0,-2,3,4
+Hilda,[I'll Watch Your Back],-3,-1,8,7,0,-2,0,1
+Ludwig,[That's Good News],10,0,-1,2,6,-3,-4,0
+Fullbright XII,[I Am a Merchant],-3,3,1,0,7,3,7,-4
+Nacht Zweiger,[Raging Soul on a Rampage],7,0,-1,8,-2,-2,-2,-1
+Kyrdlund's Mayor,[I Am the Mayor],0,-4,1,0,0,10,-4,-4
+Kyrdlund's Mayor,[What Cute Mice],3,1,-2,0,0,10,-5,-5
+Asura,[I Am Not a Dojo Master!],6,3,1,2,-2,-3,-5,7
+Dorra,[Terror of the Skies],9,2,1,6,-5,-3,-2,1
+Bunnie,[It's Not a Lie],1,1,6,2,-2,-2,1,1
+Bunnie,[What Kind of Experiment?!],1,1,6,8,-2,-4,-1,0
+Bunnie,[I've Got the Beat],0,-4,8,6,-1,-2,1,1
+Alloces,[Prove Your Worth],6,3,2,0,1,-1,-1,0
+Alloces,[Born to Battle],4,-1,1,5,0,2,-1,-1
+Byunei,[Lord of the Dragons],-6,-1,1,4,10,3,-1,0
+Byunei,[Maggots!],-5,-5,0,6,5,6,1,2
+Byunei,[Sinistral of the Sky],-5,2,-2,1,10,0,1,2
+Byunei,[I Can Take You One-Handed!],-2,-5,-2,6,8,3,1,-1
+Byunei,[I'll Leave This to You],-5,-1,-1,-1,10,6,1,2
+Aunus,['Tis Fate...],2,6,4,0,-5,3,1,-2
+Aunus,[Your End Is Inevitable!],10,3,1,3,-3,-3,-2,1
+Aunus,[Sinistral of Fire],10,3,4,0,-5,-3,1,-2
+Aunus,[Look Into the Flame Vortex!],4,2,-2,0,3,3,0,-1
+Forneus,[Ruler of the Sea],4,0,5,2,1,0,-2,0
+Forneus,[Invitation from the Abyss],7,8,2,-4,-5,1,-2,1
+Forneus,[Sinistral of the Sea],9,6,2,-1,-5,-1,1,-2
+Forneus,[Deep Sea Departure],7,2,1,-2,3,0,-1,-1
+Mugplant,"[You Laugh, You Lose]",0,0,1,2,5,1,0,1
+Blue,[My Name Is Blue],-4,-8,1,1,5,9,5,1
+Blue,[Fated Mage],-3,-2,0,1,6,4,2,1
+Blue,[I Hate Red],-3,-5,0,1,8,6,2,1
+Blue,[This Ends Here],-6,-1,1,1,10,3,2,0
+Blue,[I'll Make the Dragon Dance],-5,-1,1,6,8,3,-1,-1
+Riki,[Riki the Lummox],3,1,3,4,2,-2,-8,6
+Riki,[I'm Looking for the Rings!],0,0,2,6,2,-1,-4,4
+Riki,[Idyllic Margmel],5,-1,2,8,0,-3,-3,1
+T260G,[Awaiting Orders],-1,8,4,2,2,-5,-2,0
+T260G,[Awaiting Upgrade],-1,3,4,2,2,-1,-2,0
+T260G,[Mission: Gatalympics],-2,-1,8,5,2,0,-2,-2
+T260G,[Commencing Last Mission],-2,1,6,7,3,0,-5,0
+Alkaiser,[Alkaiser's on the Scene!],5,-1,0,2,2,-2,1,1
+Red,[Red's One-hit Knockout!],5,-6,0,2,2,4,1,1
+Red,[Gotta Pay Your Respects],5,2,0,3,-1,0,1,-1
+Alkaiser,[A Hero Awakens],2,-1,0,7,2,-2,1,0
+Alkaiser,[The Hero's Duty],7,-1,-2,5,1,-2,1,1
+Red,[Call Me Red],2,5,-3,5,0,1,0,-1
+Emelia,[I'll Never Forgive You!],0,2,6,0,-3,0,1,2
+Emelia,[I've Got Your Back],0,2,7,0,-3,0,1,1
+Emelia,[Lethal Commando],0,1,8,4,-2,-1,0,0
+Emelia,[Onsen Manju],0,1,6,6,-2,-1,0,0
+Pink Tiger,[Aerial Kill!],6,-1,3,6,-1,-2,-2,0
+Asellus,[My Name Is Asellus!],4,8,3,3,4,-3,-1,-1
+Asellus,[I Want to Return the Favor],2,1,3,6,3,0,-1,2
+Asellus,[Facing the Final Battle],8,2,3,3,3,-3,-2,2
+Asellus,[Floats My Boat!],6,2,1,8,3,-2,-3,1
+Asellus,[I Want Red Blood],4,0,6,2,1,3,-4,5
+Asellus,[New Lord of the Chateau],9,1,3,3,7,-3,-4,2
+Lute,[Take It Easy ♪],8,-1,1,1,-3,-4,2,5
+Lute,[Listen to My Song],3,6,4,1,-1,-4,-2,0
+Fuse,[The Best IRPO Agent?],-2,1,10,4,0,-1,-2,-1
+Ren,[I Love You],4,-2,2,7,3,-1,-3,0
+Ren,[Annoying Youngster],2,4,-2,3,3,4,-2,-2
+Silence,[Stays Out of the Way],-5,1,8,2,3,2,0,-2
+Doll,[Not to Be Messed With],-2,1,10,4,1,-2,-2,-1
+Rabbit (SF1),[I'm Like a Rabbit],-4,5,5,6,0,-3,0,-1
+Cotton,"[Get to Work, Cottonball!]",5,-1,0,10,-2,0,0,-2
+Roufas,[I'm the Top Brass],-2,2,10,4,-2,-1,-1,0
+Annie,[You Must Have a Death Wish],6,3,1,2,-1,0,2,-3
+Annie,[Looks Like Fun],1,0,1,4,1,1,2,-1
+Annie,[I'll Take Point],2,7,4,1,2,-5,0,-2
+Annie,[This Is Our Secret],8,-2,0,1,5,0,2,-3
+Annie,[Gotcha!],6,1,1,6,1,-2,-1,-2
+Lyza,[How Can I Help You?],8,2,2,6,-6,-1,1,-2
+Lyza,[Thought I was Helpless?],3,-3,3,9,0,-1,0,-1
+Lyza,[In Your Dreams],5,0,-1,10,-1,0,-2,-2
+M Black,[A Warrior's Solitude],8,4,2,-2,-1,-1,-1,0
+M Black,[I've Waited For This],10,5,2,-1,-3,-1,-3,0
+Rouge,[My Name Is Rouge],-2,1,1,2,5,2,-5,5
+Rouge,[Nomad Seeking Power],-6,-2,0,1,9,4,2,1
+Rouge,[Seeking His Other Half],-2,0,1,2,5,2,1,-1
+Rouge,[All For This Day],-6,-2,1,1,10,5,1,1
+Rouge,[Hold Back Hell],-6,-1,0,6,8,3,0,0
+Rouge,[Trials Up Ahead],-5,-3,0,0,8,8,0,1
+Gen,"[I'm Gen, Put 'Er There]",8,2,2,2,-7,1,0,1
+Gen,[Swordsman Nobushige Genjiro],7,3,2,-1,-1,-2,3,-2
+Gen,[I Challenge You All!],7,2,2,4,-4,-2,0,1
+Gen,[Try and Shoot Me!],9,6,1,-1,-4,1,-2,-1
+Mei-ling,[Let's Discuss Rings],-8,-1,8,1,7,2,0,0
+Mei-ling,[Alone on Such a Night?],-4,-1,3,4,9,2,-2,-2
+Mei-ling,[You Like Footbaths Too?],-5,0,6,1,9,2,-3,0
+Fei-on,[Battle Is the Real Training],5,-3,0,10,0,-2,1,-1
+Zozma,[Kept Me Entertained],8,0,1,0,-1,-1,-2,-1
+Ildon,[Loyal Mystic Knight],8,5,4,2,-4,-4,-3,1
+Ildon,[Half-Mystic's Guardian],10,2,1,5,-1,-4,-3,0
+Princess Rei,[I Am Rei],-2,-1,1,4,8,0,-1,1
+Princess Rei,[This Isn't a Game],-6,-3,-1,1,10,6,2,1
+Princess Rei,[A Bustling Night],-5,-1,-2,1,8,8,1,1
+Princess Lion,[Noble Golden Lion],8,1,2,5,-4,-2,0,0
+Princess Lion,[Unrelenting Feelings],10,5,2,0,-4,-2,-2,0
+Princess Lion,[My Golden Lion Dance],8,2,2,5,-4,0,-5,1
+Princess White Rose,[Favored Concubine],-4,-1,0,0,8,4,5,-1
+Princess White Rose,"[Here, This Is for You]",-2,-1,1,0,4,3,4,1
+Princess White Rose,[46th Concubine],-5,3,-4,-1,7,6,4,-1
+Princess White Rose,"[I Like Other Roses, Too]",-2,-4,1,0,4,6,2,4
+Princess White Rose,"[I'll Fight, Too]",-4,-2,1,5,7,1,4,-1
+Princess White Rose,[Memories in the Snow],-3,-1,1,0,7,3,9,-4
+Princess White Rose,[Premonition of Change],-4,0,-2,3,4,8,4,-1
+Virgil,[Launch the Fireworks],-4,1,-5,1,6,10,1,-2
+Nusakan,[I Seek Only the Sick],3,-4,-4,6,10,0,-1,-1
+Time Lord,[Why Did You Turn My Clock On?],-4,-1,0,5,10,1,0,0
+Mesarthim,[The Water Mystic's Dilemma],-4,-2,1,5,7,1,4,-1
+Mesarthim,[I Hate Human Stench],-2,3,-1,0,9,3,1,-1
+Mesarthim,[Prayers to My Savior],-4,0,1,0,9,6,1,-1
+Thunder,"[My Turn, Big Bro!]",5,5,-2,6,-1,-2,-2,0
+Kylin,[Guardian of Space Magic],-3,-4,-3,6,10,3,0,0
+Red Turnip,[White Rose's Stand-In],5,-1,2,10,-6,0,1,0
+Red Turnip,[A Gift for the Good Kids],7,3,2,4,-1,0,-2,-3
+ZEKE,[From Above the Fireworks],-2,2,10,4,0,-1,-2,-2
+Engineer Car,[Nothing I Can't Fix],-1,-4,5,8,2,0,-2,0
+Engineer Car,[Core of Mech Corps],-2,6,6,2,1,0,-3,-1
+Alkarl,[Alkarl Arrives!],6,3,-4,3,-4,10,-4,-1
+Orlouge,[The Lord of Temptation],-4,2,-2,4,5,0,5,-1
+Orlouge,[Lord of the Chateau],-5,-1,-3,0,10,3,2,4
+Orlouge,[I've No Use for the Weak],-4,-1,-1,4,5,8,0,-1
+Gustave,[Gustave the Steel],8,3,3,1,-5,-1,0,0
+Gustave,"[Onward, into Battle!]",7,2,2,1,-2,-3,1,0
+Gustave,[A Conqueror's Anguish],4,2,2,5,-5,0,1,-2
+Gustave,[The Battle of Buckethill],10,1,1,0,-3,-3,1,1
+Gustave,[Leading the Steel Forces],10,-1,5,0,-3,-3,1,1
+Gustave,[A Little Too Big],8,7,2,0,-5,-3,1,0
+Gustave,[To Test My Sword!],8,2,0,5,-2,-2,-1,0
+Gustave,[The Fated Hour Comes],5,5,1,-2,-5,5,0,1
+Wil,[Tycoon in His Youth],2,4,1,2,2,-1,-1,-1
+Wil,[Take this Quell in Return],8,2,1,2,-1,-2,-1,0
+Wil,[The Perfect Nightcap],0,5,4,4,-4,0,-1,-2
+Wil,[For Children Everywhere],9,5,-1,1,1,-2,-3,1
+Wil,[Anima-Honing Ninja],6,1,0,0,7,-2,-3,0
+Wil,[I Am Wil Knights],8,0,-1,1,-1,3,-1,0
+Rich,"[I'm ""Rich"" in Name Only]",3,3,1,4,3,-2,4,-7
+Rich,[I'll Protect My Family],3,1,1,3,3,-1,-2,1
+Rich,[Santa's Not a Bad Gig],8,-2,-1,6,2,-3,-2,0
+Rich,[Tofu Feeds My Anima],8,0,0,6,2,-3,-3,0
+Rich,[Can't Let You Go Outside],3,0,-1,2,8,2,-4,-1
+Ginny,[Anima of the Forest!],8,1,1,1,-2,-1,1,0
+Ginny,[I'm Ginny Knights],6,1,1,0,1,-2,0,1
+Ginny,[I'm Not Cold at All],6,1,1,0,0,-2,1,1
+Ginny,[Therapeutic Anima],6,1,1,5,-1,-1,-1,-1
+Ginny,"[Give Me Strength, Father]",1,6,4,-2,1,-1,0,0
+Ginny,[Buying Souvenirs Is Fun],6,0,0,-1,6,-2,0,0
+Kelvin,[My Duty as a Noble],10,-1,-2,-1,6,-5,3,-2
+Leslie,[A New Land],10,-2,-3,0,-2,0,6,1
+Flynn,"[Sir Gus, the Sea!]",0,-4,4,9,1,0,0,-2
+Flynn,[Let's Eat Some Akebia],-5,-1,9,4,1,1,0,0
+Flynn,[Just Don't Fight],-2,-3,9,7,0,0,0,0
+Cielmer,[Getting to Know Gustave],-3,-2,-5,6,10,2,2,0
+Nebelstern,[The Courage to Lead],4,5,5,-2,-5,3,0,0
+Nebelstern,[Tea to Clear the Mind],10,0,2,3,-4,-2,0,0
+Johan,[Hide in Plain Sight],6,-1,2,5,-6,0,1,3
+Johan,[Sting of the Scorpion],2,-2,3,9,0,-1,0,-1
+Johan,"[Come Get Some, Monsters!]",3,-6,4,12,-1,-1,0,-1
+Johan,[The Hour of Fate],5,0,1,5,5,-2,-3,-2
+Johan,[Just a Little Longer],5,-2,0,2,-2,-1,-1,-1
+Ventarbre,[Master Cielmer's Teachings],-3,-3,1,2,8,4,3,-2
+Cordelia,[I'm a Sentry Too],6,2,3,1,-3,-1,0,0
+Cordelia,[I Really Like You],5,6,3,1,-2,-4,0,0
+Cordelia,[My Own Catnip],5,1,2,4,-2,-1,1,-1
+Cordelia,[Enveloped in Happiness],10,0,2,4,-3,-2,-1,0
+Cordelia,[I Want to Know More],8,2,2,-3,-3,5,1,-2
+Cordelia,[Moonlit Stroll],10,2,1,3,-3,-2,-1,0
+Cordelia,[It's Safe This Way],8,1,-1,5,-4,0,0,1
+Narcisse,[Count On Me],-3,-3,8,4,4,1,-1,0
+Narcisse,"[Anima, Gather to Me]",-4,-3,6,1,9,1,0,0
+Tyler,[I'll Go First],10,4,-3,-3,-1,3,-1,0
+Labelle,[Anima of the Woods],-2,1,7,4,2,-2,0,0
+Labelle,[It's a House Party],-2,-1,9,1,-1,-4,4,4
+Diana (SF2),[Welcome Home!],10,-1,-1,6,-3,-1,-1,0
+Julia,[Rainbow of My Dreams],-5,-2,8,-1,8,1,-1,1
+Eleanor,[You Can Rely on Me],-6,-1,-2,4,10,3,0,1
+Roberto,[Delightful Destiny],-2,1,7,0,6,-1,1,-2
+Roberto,[Let the Anima Guide You],-2,6,5,-2,4,-1,-2,1
+Primiera,[Where I'll Spend My Days],10,6,1,-2,-4,-1,0,0
+Primiera,[Time to Spread My Wings],5,3,6,3,-5,-1,-3,0
+Primiera,[Feel the Weapon's Anima],8,1,1,5,-2,-2,-1,-1
+Meythia,[Swing Away],10,3,4,0,-3,-3,1,-2
+Gustaf,[Two Legendary Swords],10,2,2,3,-2,-3,-3,1
+Gustaf,[I'll Lead the Way],8,-1,2,0,-4,5,0,-2
+Misty,[Take the Egg],-4,-2,-1,2,10,6,-2,2
+Misty,[I Will Kill Wil],-3,3,-3,5,5,2,-4,5
+Laura,[Leave It to Me],5,9,3,1,-2,-7,0,0
+Laura,[I'm Laura the Sea Wolf!],8,5,2,0,-2,-6,1,1
+Laura,"[Ugh, What a Drag]",10,2,2,3,-2,-3,-3,0
+Laura,[This Beauty Is Paradise],8,2,2,0,-7,5,-2,1
+Ventus,[The Best Carrier],8,-2,3,5,-2,0,0,-2
+Ventus,[This Feels Great!],8,-2,3,5,-2,0,0,-2
+Judie,"[Welcome Home, Daddy!]",-6,-3,-1,5,10,2,2,1
+Kurt,"[Hi, I'm Kurt Burgundy]",7,8,0,1,-4,0,-3,-2
+Ruby,[Everything Will Be All Right!],0,0,0,0,0,0,0,0
+Ruby,[Higher! Higher!],-6,-1,-1,4,10,3,1,1
+Mythe,[Knowing True Love],-3,0,10,6,-1,-1,0,-2
+Armic,[Which Way Should I Go?],5,-2,-2,9,0,1,-1,1
+Henri,[King of Escata],-10,-1,9,2,3,2,3,1
+Henri,[Prince of Escata],-3,-4,6,5,3,1,0,1
+Iskandar,[Just a Regular Guy],10,2,1,0,-3,2,-2,0
+Iskandar,[Beyond the Passage of Time],10,2,1,0,-3,2,-2,0
+Silver Emperor,[Crossing Time and Space],4,6,2,-3,-3,6,-2,-1
+Silver Emperor,[Entrusting the Future],9,1,2,2,-2,-1,-2,0
+Selma,"[C'mon, Butcher!]",-5,-1,7,7,1,1,0,0
+Selma,[Silver Heart Heir],-3,-1,4,7,1,1,0,0
+Selma,"[No One's Looking, Right?]",-2,-1,9,7,1,-2,-2,0
+Selma,[Bon Appetit],-2,-1,4,9,4,-1,0,-2
+Selma,[Sink That Pirate Ship!],-2,-1,9,7,1,-1,-1,-2
+Urpina,[On My Best Behavior Today],5,8,3,1,1,-8,-1,0
+Urpina,[The Power of House Julanius],4,4,2,1,0,-2,0,-1
+Urpina,[I Will Never Back Down],8,2,2,0,0,-4,-1,1
+Urpina,[Now That's Dual Wielding!],9,0,5,0,-1,-3,0,0
+Urpina,[Now That's Zero Wielding!],7,0,1,5,1,-3,-3,1
+Leonard (SSG),[Not Another Word],7,5,2,1,-1,-5,0,0
+Leonard (SSG),[Got a Problem?],10,0,0,3,-2,-3,0,1
+Taria,[Back to the Good Old Days],-2,-1,1,1,9,3,2,0
+Taria,[Porcelain Therapy],-5,-1,-2,1,10,3,5,0
+Balmaint,[Axe for Executions],5,4,2,0,-2,-1,1,0
+Balmaint,[Royal Headsman],10,6,-1,0,-8,0,1,-1
+Elisabeth,[Let's Have Some Fun!],8,0,-2,0,1,3,-2,1
+Elisabeth,[You Aren't Off the Hook],10,3,1,3,-5,-3,-2,1
+Arthur Darlton,[The Law Is My Ally],-5,-2,-1,4,10,2,2,1
+Antonius,[The Weight of Swords],10,-1,0,2,-4,6,0,-4
+Strumiknen,[Stronger Than Me?],10,0,4,0,-2,-3,1,-2
+Elysed,[Lady of House Gwynese],-8,-4,1,1,8,6,2,4
+Elysed,[The Forest Is Calming],-6,-4,1,4,10,3,2,1
+Sasha,[Water Faerie Incarnate],-4,-3,-1,1,10,6,0,1
+Tsubaki,[No Mercy for Witches!],-4,0,6,2,10,2,-4,-3
+Macha,[Let's Have Some Fun!],-5,-3,0,4,10,3,1,1
+Macha,[Source of Magic],-5,-4,-1,1,8,6,2,4
+Polka Lynn Wood,[Marquisate Grave Knight!],4,1,2,4,3,-2,3,-6
+Polka Lynn Wood,[Inherited Shucho Arts],-1,1,-1,6,8,-3,-2,1
+Polka Lynn Wood,[Lend Me Your Strength!],3,2,2,4,2,-2,-3,0
+Polka Lynn Wood,[Hold Onto My Floatie!],9,1,1,3,0,-4,-2,1
+Polka Lynn Wood,[A New Family],0,4,-2,1,3,2,1,1
+Polka Lynn Wood,[Stronger Shucho Magic!],0,1,-2,8,6,-1,-2,-1
+Polka Lynn Wood,[Even If This Body Burns],-1,1,-1,3,8,-2,-5,1
+Polka Lynn Wood,[My One Wish],0,0,0,3,6,4,-4,0
+Rag Robin,[Why Is It Only Me?!],9,4,0,0,1,-2,-2,-1
+Liz Lynn Wood,[Possessed by Magic],-9,-2,0,1,12,4,3,1
+Liz Lynn Wood,[Triple Scoop Ice Cream],-5,-1,5,1,5,3,2,0
+Robingirl,[My Identity? A Secret!],-6,-2,4,6,5,3,2,-1
+Liz Lynn Wood,[Innate Genbu Arts],-6,-3,-1,1,10,6,2,1
+Liz Lynn Wood,[To Become a Strong Mother],-7,2,1,-4,8,-2,2,4
+Liz Lynn Wood,[Let Genbu Into Your Heart],-5,-4,1,4,2,8,2,-2
+Liz Lynn Wood,[A Mother's Flowing Love],-6,-1,1,6,8,0,2,1
+Liz Lynn Wood,[Believing in Their Future],-6,2,0,1,12,3,1,0
+Robingirl,"[Punishment, Complete!]",-5,-3,6,0,4,6,2,0
+Shen Du,[Eeek!],-9,-2,0,1,12,4,3,1
+Shen Du,[A Pledge to You],-5,-4,1,4,12,3,2,-2
+Shen Du,[With Master Dahao],-5,-2,-1,1,8,8,3,-1
+Valdor,[You Must Respect Life!],9,6,1,2,-8,0,1,-2
+Valdor,[Formal & Shellfish Knight],3,12,1,1,-2,-4,1,-2
+Valdor,[Behold the Spiral's Power!],0,6,-1,7,-2,-4,1,0
+Valdor,[Only Training Will Do],9,1,1,5,-5,0,-2,-2
+Valdor,[Fruits of My Training],3,3,1,7,-3,3,-2,-3
+Valdor,[Requiem],9,6,-1,2,-3,-2,-1,-1
+Faerie (Brownie),[I Got This],3,-6,2,7,2,0,1,0
+Faerie (Brownie),[This Is Just the Bait],1,-1,2,4,2,1,1,-1
+Faerie (Brownie),[Faerie Soul],3,3,2,2,2,-4,1,0
+Faerie (Brownie),[Music? Leave It to Me!],6,0,5,0,0,0,-1,-1
+Faerie (Brownie),[Send Me Into the Field!],0,-5,1,7,1,5,-2,0
+Faerie (Brownie),[I'll Do This Alone],4,-1,7,0,-1,0,1,0
+Tu Kwai,[Beyond a Cursed Fate],8,1,1,5,1,-2,-2,-2
+Madeleine,[Reincarnation of Khalid],7,-4,1,9,-1,-3,0,0
+Madeleine,[A New Tornado],10,-1,4,2,-3,-3,0,0
+Madeleine,[Leading the Gessian People],3,-1,-1,5,2,2,0,-1
+Madeleine,[A New Khamsin],1,-1,1,9,2,-2,-3,1
+Madeleine,[Two Khamsins],10,-1,1,5,-1,-4,-3,1
+Madeleine,[We Will Break Through!],5,2,0,9,-4,2,-3,-3
+Zenon,[The Imprisoned Marquis],-3,4,6,6,1,-2,-4,1
+Zenon,[Sharpen Your Senses],-4,0,8,0,6,-1,-2,1
+Zenon,[Marquis No More],-4,-2,6,8,3,0,-2,1
+Zenon,[War Cry],-3,1,8,2,-1,3,-2,1
+Zenon,[Dreams and Ambitions],-3,1,8,6,0,-1,-2,1
+Dahao,[Chief Astronomer],-5,-4,1,1,8,3,7,-2
+Dahao,"[Here We Go, Shen Du]",-4,-3,-1,4,10,3,2,0
+Witch's Daughter,[Seeking Soul Inheritance],-5,-2,0,1,10,6,1,0
+Jo,[Mage of Fire and Ice],-8,-3,1,3,8,3,2,6
+Jo,[Don't Hold Back],-4,-3,-1,4,10,3,2,-1
+Jo,"[Strongest, Even in Costume]",-10,4,1,1,4,6,2,1
+Jo,[Not Yet Perfected],-5,-4,0,6,8,3,2,1
+Jo,[This Is My Duty],-5,-3,0,1,10,6,2,0
+Robingal,[Hot or Cold?],3,-4,0,1,8,2,1,0
+Genryu,[Jo's Pet],7,-7,2,8,0,0,1,0
+Genryu,[A Forbidden Existence],2,3,2,10,0,-3,-2,-1
+Genryu,[Fighting Together],5,-1,-1,10,0,0,-1,-2
+Bertrand,[Archfiend's Illegitimate Son],4,-5,2,0,0,5,0,4
+Bertrand,[The Guilt-Bearing Brother],1,-3,2,3,8,-1,-3,1
+Bertrand,[Destined to Live],6,-2,1,0,6,2,-2,-1
+Genryu (Snowy),"[Burning Fire, Icy Heart]",2,-3,-1,10,-1,3,1,-2
+Genryu (Snowy),[One Who Understands Him],5,-3,-1,5,0,-3,4,3
+Genryu (Snowy),[Fighting for What?],-1,5,-1,8,-2,-2,1,-1
+Igomahl,[Igomahl the Harlequin],-3,3,-2,6,4,3,-4,5
+Igomahl,[Dazzling Visions],-1,0,-3,2,10,6,-4,2
+Liam,[Peaceful Days],-4,0,8,3,5,1,2,-3
+Liam,[My First World],-3,0,10,6,1,2,-2,-2
+Anya,[Red-Headed Girl],-5,0,6,0,-1,-1,10,2
+Candy,[Monster Power],1,-1,-5,4,5,5,-1,3
+Candy,[I Love Sweets!],6,2,-5,10,2,2,-3,-2
+Darius,[Leader of Clavis],5,0,0,-1,4,1,-4,4
+Barthelemy,[Together Forever],0,1,6,3,6,0,-8,1
+Barthelemy,"[A Twisted Heart, Yet...]",-1,-1,0,8,5,-2,1,-1
+Barthelemy,[Let's Have a Blast!],-3,1,6,3,7,0,-5,1
+Barthelemy,[To Reclaim Myself],-2,1,3,3,5,5,-5,-1
+Barthelemy,[Your Healthy Growth],-3,4,8,3,2,-4,-2,1
+Melissa,[Your Happy Future],-3,-1,-1,-1,9,3,7,-2
+Evelyn,[Witch Revived],-3,3,-2,2,8,4,0,-2
+Evelyn,[The End of the Witch],-1,-2,-1,5,10,-2,0,1
+Evelyn,[Surrounded by Death],-4,0,1,2,8,6,0,-2
+Wicked Witch,[All for Revenge],-3,-2,0,7,8,0,-1,1
+Golden Baum,[Golden Baum],1,8,1,2,-2,-6,1,4
+Golden Baum,[Dissolve into the Waaater],3,6,1,7,-5,-3,1,-2
+Golden Baum,[Talent Show],8,3,-2,5,-5,-3,1,1
+Minstrel,"[Poem of Gods, Song of Men]",8,2,1,2,-2,-1,2,-2
+Minstrel,[First Dream of the Year],3,2,4,4,-2,2,0,-2
+Minstrel,[Taking Requests],3,0,1,2,6,2,0,-4
+ITOKEN,[Holy Demonic Concert],1,5,1,-1,0,7,3,-5
+Claudia,[Looking for Targets],1,0,7,3,0,0,1,2
+Barbara,[Pump It Up],2,3,3,-1,0,5,1,1
+Leon,[Ready for a Toast?],6,0,1,5,3,1,2,1
+Final Emperor,[At the Victory Banquet],9,5,2,-1,-1,2,0,1
+Final Empress,[At the Victory Celebration],6,5,3,1,-1,5,1,-1
+Coppelia,[Careful Preparations],3,3,1,6,-1,-3,1,2
+Therese,[You're My Prey Today],0,0,0,0,0,0,0,0
+Emerald,[Buried in Sand],0,0,0,0,0,0,0,0
+Emerald,[Expect Great Things],-2,-1,1,2,6,6,3,1
+Minerva,[The Spear Is the Strongest],8,4,2,1,-2,0,1,1
+Azami,[Ninjutsu to the Fullest],2,1,1,5,2,3,-1,1
+Vampire Lady,[Time to Get Serious],2,0,1,6,3,3,0,1
+Rocbouquet,[Fleeting Beauty],-3,-1,1,2,9,3,3,5
+Mikhail,[Our Backs to the Rising Sun],-2,1,4,6,2,3,0,1
+Monika,[Nothing to Fear],0,0,4,4,5,1,0,0
+Katarina,[Hey! No Looking!],0,0,0,0,0,0,0,0
+Katarina,[The Importance of Long Hair],0,0,0,0,0,0,0,0
+Katarina,[It's An Escort Mission Uniform],10,2,2,3,-1,3,0,1
+Tatyana,[Don't Let Go],5,4,1,4,-2,0,1,2
+Rukh,[But Rukh Has Two Legs],4,7,1,-1,-5,6,-1,-1
+Undine,[A Water Festival],-2,-1,1,5,5,4,2,1
+Maiden of Lance,[I'll Survive Tomorrow],5,3,3,0,-2,0,1,1
+Red,[A Thousandth of a Second],4,0,0,8,3,1,1,1
+Alkaiser,[The Hero's Dilemma],2,0,0,3,2,1,5,1
+Emelia,"[Is This a Job, Too?]",3,2,4,1,4,1,0,0
+Asellus,[Lingering Self-Doubt],4,2,3,6,10,0,-4,-1
+Fuse,[Region Patrol's Top Man],1,2,10,3,4,-1,0,0
+Doll,[Exactly What I Aimed For],0,0,0,0,0,0,0,0
+Cotton,[Myu Myu Myu Myu!],0,0,0,0,0,0,0,0
+Roufas,[There You Go],0,0,0,0,0,0,0,0
+Annie,[What Should I Paint?],6,1,1,6,1,-2,-1,-2
+Lyza,[Best Moment Ever!],0,0,0,0,0,0,0,0
+Princess White Rose,[I'm Princess Pumpkin],0,1,1,0,8,4,4,-1
+Urpina,[I'm Ready],5,2,2,4,1,-5,0,1
+Leonard (SSG),[Take This!],7,3,2,6,-1,0,0,1
+Elisabeth,[I'm Not Stingy],5,9,1,0,-2,1,1,1
+Sasha,[Don't Say a Word],-2,-1,1,1,6,3,6,1
+Polka Lynn Wood,[This Is Luvice],3,1,2,3,3,-1,-2,5
+Zenon,[The Ausbach Bloodline],0,1,3,3,0,-2,1,0
