@@ -16,6 +16,12 @@ class WeaponType(Enum):
     Spell = 12
 
 
+str_weapon_types = [WeaponType.Sword, WeaponType.Greatsword, WeaponType.Axe, WeaponType.Club, WeaponType.Spear]
+dex_weapon_types = [WeaponType.Epee, WeaponType.Bow, WeaponType.Gun]
+agi_weapon_types = [WeaponType.Fist]
+int_weapon_types = [WeaponType.IntFist, WeaponType.Staff, WeaponType.Spell]
+
+
 class MagicType(Enum):
     Fire = 51
     Water = 52

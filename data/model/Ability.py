@@ -57,7 +57,8 @@ class Ability:
                     if rank == 0:
                         damage_value = 2.5
                     else:
-                        if damage['NamePattern'] == 'Fired Up' and rank >= 5:
+                        # Rank 5 effects are 30%, not 25%.  This handles Weak Point V and Fired Up VI
+                        if rank >= 5:
                             rank += 1
                         damage_value = 5 * rank
                 boost = TypeBoost(damage_value)

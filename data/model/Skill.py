@@ -72,3 +72,7 @@ def get_skills(skill_filename, skill_power_filename):
         if skill_power['skillId'] in skill_dict:
             skill_dict[skill_power['skillId']].power_number = skill_power['power']
     return skill_dict
+
+
+if __name__ == '__main__':
+    skills = get_skills('')

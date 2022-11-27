@@ -1,4 +1,4 @@
-NamePattern,DamageType,NumberOfTurns,DamageValue,AllAllies,FullHp,WeakPoint
+NamePattern,DamageType,NumberOfTurns,DamageValue,AllAllies,FullHp,WeakPoint,BoostType
 Showtime,0,3,5,True,False,False
 Pierce Clash,3,3,10,True,False,False
 Lightning Blitz,6,3,10,True,False,False
@@ -18,7 +18,7 @@ Bond of Fire & Ice,5,0,5,True,False,False
 Song of Hope,0,0,5,True,False,False
 Sensei's Power,0,0,10,False,False,False
 Unite,0,0,15,False,False,False
-Valiance,0,0,15,False,False,False
+Valiance,0,0,20,False,False,False
 Imperial Assault,0,1,10,True,False,False
 Fired Up,0,0,-1,False,False,False
 Hardy Wallop,0,0,0,False,True,False
@@ -27,8 +27,12 @@ Battle Tension,0,0,15,False,False,False
 Over Tension,0,0,15,False,False,False
 Weak Tension,0,0,15,False,False,False
 Weak Tension,0,0,10,False,False,True
+High Weak Tension,0,0,20,False,False,False
+High Weak Tension,0,0,15,False,False,True
 Robust Tension,0,0,15,False,False,False
 Robust Tension,0,0,10,False,True,False
+Hyper Robust Tension,0,0,20,False,False,False
+Robust Tension,0,0,15,False,True,False
 Engage,0,1,3,False,False,False
 One Fell Swoop,0,3,30,False,False,False
 Strengthened Energy,0,0,10,False,False,False
@@ -60,5 +64,4 @@ Soul of Spear,0,0,15,False,False,False
 Soul of Sword,0,0,15,False,False,False
 Soul of Axe,0,0,15,False,False,False
 High Battle Tension,0,0,20,False,False,False
-High Counter Tension,0,0,20,False,False,False
 High Counter Tension,0,0,20,False,False,False
