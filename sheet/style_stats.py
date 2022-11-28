@@ -23,8 +23,8 @@ def write_stats_data(authentication, sheet_id, styles, characters):
             row_values = []
             current_row = row + header_rows
             row_values.append(style.rank)
-            row_values.append(style.character_name)
-            row_values.append('')
+            row_values.append(name)
+            row_values.append(style.character_name if style.character_name != name else '')
             row_values.append(style.style_name)
             # Base stats
             row_values.append(f'=$D$2+{style.base_str_bonus}')
@@ -50,14 +50,14 @@ def write_stats_data(authentication, sheet_id, styles, characters):
             agi_bonus = 5 if style.weapon_type in agi_weapon_types else 0
             int_preferred = style.weapon_type in int_weapon_types or len([skill for skill in style.skills if skill.weapon_type == WeaponType.Spell]) > 1
             int_bonus = 5 if int_preferred else 0
-            row_values.append(f'=FLOOR(MAX($D{character_first_row}:$D{character_last_row})*(1.{str_bonus}+VLOOKUP($C{current_row},StyleData,17,FALSE)/100))+VLOOKUP($C{current_row},StyleData,18,FALSE)')
-            row_values.append(f'=FLOOR(MAX($E{character_first_row}:$E{character_last_row})*(1+VLOOKUP($C{current_row},StyleData,19,FALSE)/100))+VLOOKUP($C{current_row},StyleData,20,FALSE)')
-            row_values.append(f'=FLOOR(MAX($F{character_first_row}:$F{character_last_row})*(1.{dex_bonus}+VLOOKUP($C{current_row},StyleData,21,FALSE)/100))+VLOOKUP($C{current_row},StyleData,22,FALSE)')
-            row_values.append(f'=FLOOR(MAX($G{character_first_row}:$G{character_last_row})*(1.{agi_bonus}+VLOOKUP($C{current_row},StyleData,23,FALSE)/100))+VLOOKUP($C{current_row},StyleData,24,FALSE)')
-            row_values.append(f'=FLOOR(MAX($H{character_first_row}:$H{character_last_row})*(1.{int_bonus}+VLOOKUP($C{current_row},StyleData,25,FALSE)/100))+VLOOKUP($C{current_row},StyleData,26,FALSE)')
-            row_values.append(f'=FLOOR(MAX($I{character_first_row}:$I{character_last_row})*(1+VLOOKUP($C{current_row},StyleData,27,FALSE)/100))+VLOOKUP($C{current_row},StyleData,28,FALSE)')
-            row_values.append(f'=FLOOR(MAX($J{character_first_row}:$J{character_last_row})*(1+VLOOKUP($C{current_row},StyleData,29,FALSE)/100))+VLOOKUP($C{current_row},StyleData,30,FALSE)')
-            row_values.append(f'=FLOOR(MAX($K{character_first_row}:$K{character_last_row})*(1+VLOOKUP($C{current_row},StyleData,31,FALSE)/100))+VLOOKUP($C{current_row},StyleData,32,FALSE)')
+            row_values.append('')
+            row_values.append('')
+            row_values.append('')
+            row_values.append('')
+            row_values.append('')
+            row_values.append('')
+            row_values.append('')
+            row_values.append('')
             for value in row_values:
                 cell_number += 1
                 sheet_range[cell_number].value = value
