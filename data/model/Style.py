@@ -23,6 +23,7 @@ class Style:
     def __init__(self, style_json_object):
         self.id = style_json_object['id']
         self.character_name = style_json_object['name']
+        self.character_id = style_json_object['character_id']
         self.style_name = style_json_object['another_name']
         self.level_50_str_mod = style_json_object['bonus_rate_max_str'] - 100
         self.level_50_end_mod = style_json_object['bonus_rate_max_end'] - 100
