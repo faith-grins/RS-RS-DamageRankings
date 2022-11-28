@@ -1,1 +1,1 @@
-from .construct import reconstruct_styles
+from .construct import retrieve_styles, retrieve_characters
